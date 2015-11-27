@@ -1,0 +1,1169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="schooljournalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="schooljournalModelStoreContainer">
+          <EntitySet Name="admin" EntityType="schooljournalModel.Store.admin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="grade" EntityType="schooljournalModel.Store.grade" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="group" EntityType="schooljournalModel.Store.group" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="lesson" EntityType="schooljournalModel.Store.lesson" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="lesson_student" EntityType="schooljournalModel.Store.lesson_student" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="marks" EntityType="schooljournalModel.Store.marks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="parent" EntityType="schooljournalModel.Store.parent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="parent_student" EntityType="schooljournalModel.Store.parent_student" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="student" EntityType="schooljournalModel.Store.student" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="student_group" EntityType="schooljournalModel.Store.student_group" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="subject" EntityType="schooljournalModel.Store.subject" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="teacher" EntityType="schooljournalModel.Store.teacher" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="teacher_lesson" EntityType="schooljournalModel.Store.teacher_lesson" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="user" EntityType="schooljournalModel.Store.user" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="attendanceJournal" EntityType="schooljournalModel.Store.attendanceJournal" store:Type="Views" store:Schema="dbo" store:Name="attendanceJournal">
+            <DefiningQuery>SELECT 
+      [attendanceJournal].[StudentID] AS [StudentID], 
+      [attendanceJournal].[Last Name] AS [Last Name], 
+      [attendanceJournal].[First Name] AS [First Name], 
+      [attendanceJournal].[IsPresent] AS [IsPresent], 
+      [attendanceJournal].[Mark] AS [Mark], 
+      [attendanceJournal].[Date] AS [Date], 
+      [attendanceJournal].[Grade] AS [Grade], 
+      [attendanceJournal].[Section] AS [Section], 
+      [attendanceJournal].[Subject] AS [Subject], 
+      [attendanceJournal].[TeacherID] AS [TeacherID]
+      FROM [dbo].[attendanceJournal] AS [attendanceJournal]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_student_group_group" Association="schooljournalModel.Store.FK_student_group_group">
+            <End Role="group" EntitySet="group" />
+            <End Role="student_group" EntitySet="student_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_student_group_student" Association="schooljournalModel.Store.FK_student_group_student">
+            <End Role="student" EntitySet="student" />
+            <End Role="student_group" EntitySet="student_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_teacher_group" Association="schooljournalModel.Store.FK_teacher_group">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="group" EntitySet="group" />
+          </AssociationSet>
+          <AssociationSet Name="R_10" Association="schooljournalModel.Store.R_10">
+            <End Role="student" EntitySet="student" />
+            <End Role="parent_student" EntitySet="parent_student" />
+          </AssociationSet>
+          <AssociationSet Name="R_15" Association="schooljournalModel.Store.R_15">
+            <End Role="subject" EntitySet="subject" />
+            <End Role="lesson" EntitySet="lesson" />
+          </AssociationSet>
+          <AssociationSet Name="R_17" Association="schooljournalModel.Store.R_17">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="teacher_lesson" EntitySet="teacher_lesson" />
+          </AssociationSet>
+          <AssociationSet Name="R_18" Association="schooljournalModel.Store.R_18">
+            <End Role="lesson" EntitySet="lesson" />
+            <End Role="teacher_lesson" EntitySet="teacher_lesson" />
+          </AssociationSet>
+          <AssociationSet Name="R_21" Association="schooljournalModel.Store.R_21">
+            <End Role="lesson" EntitySet="lesson" />
+            <End Role="lesson_student" EntitySet="lesson_student" />
+          </AssociationSet>
+          <AssociationSet Name="R_22" Association="schooljournalModel.Store.R_22">
+            <End Role="student" EntitySet="student" />
+            <End Role="lesson_student" EntitySet="lesson_student" />
+          </AssociationSet>
+          <AssociationSet Name="R_25" Association="schooljournalModel.Store.R_25">
+            <End Role="grade" EntitySet="grade" />
+            <End Role="lesson" EntitySet="lesson" />
+          </AssociationSet>
+          <AssociationSet Name="R_26" Association="schooljournalModel.Store.R_26">
+            <End Role="grade" EntitySet="grade" />
+            <End Role="group" EntitySet="group" />
+          </AssociationSet>
+          <AssociationSet Name="R_27" Association="schooljournalModel.Store.R_27">
+            <End Role="subject" EntitySet="subject" />
+            <End Role="group" EntitySet="group" />
+          </AssociationSet>
+          <AssociationSet Name="R_29" Association="schooljournalModel.Store.R_29">
+            <End Role="grade" EntitySet="grade" />
+            <End Role="student" EntitySet="student" />
+          </AssociationSet>
+          <AssociationSet Name="R_31" Association="schooljournalModel.Store.R_31">
+            <End Role="user" EntitySet="user" />
+            <End Role="student" EntitySet="student" />
+          </AssociationSet>
+          <AssociationSet Name="R_32" Association="schooljournalModel.Store.R_32">
+            <End Role="user" EntitySet="user" />
+            <End Role="parent" EntitySet="parent" />
+          </AssociationSet>
+          <AssociationSet Name="R_33" Association="schooljournalModel.Store.R_33">
+            <End Role="user" EntitySet="user" />
+            <End Role="admin" EntitySet="admin" />
+          </AssociationSet>
+          <AssociationSet Name="R_34" Association="schooljournalModel.Store.R_34">
+            <End Role="user" EntitySet="user" />
+            <End Role="teacher" EntitySet="teacher" />
+          </AssociationSet>
+          <AssociationSet Name="R_40" Association="schooljournalModel.Store.R_40">
+            <End Role="marks" EntitySet="marks" />
+            <End Role="lesson_student" EntitySet="lesson_student" />
+          </AssociationSet>
+          <AssociationSet Name="R_9" Association="schooljournalModel.Store.R_9">
+            <End Role="parent" EntitySet="parent" />
+            <End Role="parent_student" EntitySet="parent_student" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="has_delete_rights" Type="bit" Nullable="false" />
+          <Property Name="admin_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="grade">
+          <Key>
+            <PropertyRef Name="grade_id" />
+          </Key>
+          <Property Name="grade_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="section" Type="char" MaxLength="1" />
+          <Property Name="grade_no" Type="tinyint" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="grade_id" Type="int" Nullable="false" />
+          <Property Name="subject_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+          <Property Name="teacher_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lesson">
+          <Key>
+            <PropertyRef Name="lesson_id" />
+          </Key>
+          <Property Name="lesson_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="numberOfHours" Type="int" Nullable="false" />
+          <Property Name="theme" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="subject_id" Type="int" Nullable="false" />
+          <Property Name="grade_id" Type="int" Nullable="false" />
+          <Property Name="homeTask" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="lesson_student">
+          <Key>
+            <PropertyRef Name="lesson_id" />
+            <PropertyRef Name="student_id" />
+          </Key>
+          <Property Name="lesson_id" Type="int" Nullable="false" />
+          <Property Name="student_id" Type="int" Nullable="false" />
+          <Property Name="isPresent" Type="bit" Nullable="false" />
+          <Property Name="mark_id" Type="int" />
+        </EntityType>
+        <EntityType Name="marks">
+          <Key>
+            <PropertyRef Name="mark_id" />
+          </Key>
+          <Property Name="mark_id" Type="int" Nullable="false" />
+          <Property Name="value" Type="decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="descr" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="parent">
+          <Key>
+            <PropertyRef Name="parent_id" />
+          </Key>
+          <Property Name="job" Type="varchar" MaxLength="45" />
+          <Property Name="parent_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parent_student">
+          <Key>
+            <PropertyRef Name="student_id" />
+            <PropertyRef Name="parent_id" />
+          </Key>
+          <Property Name="student_id" Type="int" Nullable="false" />
+          <Property Name="parent_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="student_id" />
+          </Key>
+          <Property Name="date_of_join" Type="datetime" />
+          <Property Name="student_id" Type="int" Nullable="false" />
+          <Property Name="grade_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student_group">
+          <Key>
+            <PropertyRef Name="student_id" />
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="student_id" Type="int" Nullable="false" />
+          <Property Name="group_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="subject_id" />
+          </Key>
+          <Property Name="subject_id" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" Nullable="false" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="teacher">
+          <Key>
+            <PropertyRef Name="teacher_id" />
+          </Key>
+          <Property Name="specialization" Type="varchar" MaxLength="45" />
+          <Property Name="category" Type="varchar" MaxLength="45" />
+          <Property Name="teacher_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="teacher_lesson">
+          <Key>
+            <PropertyRef Name="teacher_id" />
+            <PropertyRef Name="lesson_id" />
+          </Key>
+          <Property Name="teacher_id" Type="int" Nullable="false" />
+          <Property Name="lesson_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="lname" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="patronymic" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="dob" Type="date" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="phone" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'schooljournal.dbo.attendanceJournal' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="attendanceJournal">
+          <Key>
+            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="Last Name" />
+            <PropertyRef Name="First Name" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Grade" />
+            <PropertyRef Name="Subject" />
+          </Key>
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Last Name" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="First Name" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="IsPresent" Type="bit" />
+          <Property Name="Mark" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Grade" Type="tinyint" Nullable="false" />
+          <Property Name="Section" Type="char" MaxLength="1" />
+          <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="TeacherID" Type="int" />
+        </EntityType>
+        <Association Name="FK_student_group_group">
+          <End Role="group" Type="schooljournalModel.Store.group" Multiplicity="1" />
+          <End Role="student_group" Type="schooljournalModel.Store.student_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="group_id" />
+            </Principal>
+            <Dependent Role="student_group">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_student_group_student">
+          <End Role="student" Type="schooljournalModel.Store.student" Multiplicity="1" />
+          <End Role="student_group" Type="schooljournalModel.Store.student_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="student_id" />
+            </Principal>
+            <Dependent Role="student_group">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_teacher_group">
+          <End Role="teacher" Type="schooljournalModel.Store.teacher" Multiplicity="1" />
+          <End Role="group" Type="schooljournalModel.Store.group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="teacher_id" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="teacher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_10">
+          <End Role="student" Type="schooljournalModel.Store.student" Multiplicity="1" />
+          <End Role="parent_student" Type="schooljournalModel.Store.parent_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="student_id" />
+            </Principal>
+            <Dependent Role="parent_student">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_15">
+          <End Role="subject" Type="schooljournalModel.Store.subject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="lesson" Type="schooljournalModel.Store.lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="subject_id" />
+            </Principal>
+            <Dependent Role="lesson">
+              <PropertyRef Name="subject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_17">
+          <End Role="teacher" Type="schooljournalModel.Store.teacher" Multiplicity="1" />
+          <End Role="teacher_lesson" Type="schooljournalModel.Store.teacher_lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="teacher_id" />
+            </Principal>
+            <Dependent Role="teacher_lesson">
+              <PropertyRef Name="teacher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_18">
+          <End Role="lesson" Type="schooljournalModel.Store.lesson" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="teacher_lesson" Type="schooljournalModel.Store.teacher_lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lesson">
+              <PropertyRef Name="lesson_id" />
+            </Principal>
+            <Dependent Role="teacher_lesson">
+              <PropertyRef Name="lesson_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_21">
+          <End Role="lesson" Type="schooljournalModel.Store.lesson" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="lesson_student" Type="schooljournalModel.Store.lesson_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lesson">
+              <PropertyRef Name="lesson_id" />
+            </Principal>
+            <Dependent Role="lesson_student">
+              <PropertyRef Name="lesson_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_22">
+          <End Role="student" Type="schooljournalModel.Store.student" Multiplicity="1" />
+          <End Role="lesson_student" Type="schooljournalModel.Store.lesson_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="student_id" />
+            </Principal>
+            <Dependent Role="lesson_student">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_25">
+          <End Role="grade" Type="schooljournalModel.Store.grade" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="lesson" Type="schooljournalModel.Store.lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grade">
+              <PropertyRef Name="grade_id" />
+            </Principal>
+            <Dependent Role="lesson">
+              <PropertyRef Name="grade_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_26">
+          <End Role="grade" Type="schooljournalModel.Store.grade" Multiplicity="1" />
+          <End Role="group" Type="schooljournalModel.Store.group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grade">
+              <PropertyRef Name="grade_id" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="grade_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_27">
+          <End Role="subject" Type="schooljournalModel.Store.subject" Multiplicity="1" />
+          <End Role="group" Type="schooljournalModel.Store.group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="subject_id" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="subject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_29">
+          <End Role="grade" Type="schooljournalModel.Store.grade" Multiplicity="1" />
+          <End Role="student" Type="schooljournalModel.Store.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grade">
+              <PropertyRef Name="grade_id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="grade_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_31">
+          <End Role="user" Type="schooljournalModel.Store.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="student" Type="schooljournalModel.Store.student" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_32">
+          <End Role="user" Type="schooljournalModel.Store.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="parent" Type="schooljournalModel.Store.parent" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="parent">
+              <PropertyRef Name="parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_33">
+          <End Role="user" Type="schooljournalModel.Store.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="admin" Type="schooljournalModel.Store.admin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="admin">
+              <PropertyRef Name="admin_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_34">
+          <End Role="user" Type="schooljournalModel.Store.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="teacher" Type="schooljournalModel.Store.teacher" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="teacher">
+              <PropertyRef Name="teacher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_40">
+          <End Role="marks" Type="schooljournalModel.Store.marks" Multiplicity="0..1" />
+          <End Role="lesson_student" Type="schooljournalModel.Store.lesson_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marks">
+              <PropertyRef Name="mark_id" />
+            </Principal>
+            <Dependent Role="lesson_student">
+              <PropertyRef Name="mark_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_9">
+          <End Role="parent" Type="schooljournalModel.Store.parent" Multiplicity="1" />
+          <End Role="parent_student" Type="schooljournalModel.Store.parent_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parent">
+              <PropertyRef Name="parent_id" />
+            </Principal>
+            <Dependent Role="parent_student">
+              <PropertyRef Name="parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="addNewStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fname" Type="varchar" Mode="In" />
+          <Parameter Name="lname" Type="varchar" Mode="In" />
+          <Parameter Name="patronymic" Type="varchar" Mode="In" />
+          <Parameter Name="dob" Type="date" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="grade_name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getAvgMark" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stud_id" Type="int" Mode="In" />
+          <Parameter Name="avg_mark" Type="decimal" Mode="InOut" />
+        </Function>
+        <Function Name="newGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="grade_name" Type="varchar" Mode="In" />
+          <Parameter Name="subj_title" Type="varchar" Mode="In" />
+          <Parameter Name="teacher_full_name" Type="varchar" Mode="In" />
+          <Parameter Name="teacher_id" Type="int" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="placeMark" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lesson_id" Type="int" Mode="In" />
+          <Parameter Name="student_id" Type="int" Mode="In" />
+          <Parameter Name="mark_value" Type="decimal" Mode="In" />
+          <Parameter Name="is_Present" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="startNewLesson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="subj_title" Type="varchar" Mode="In" />
+          <Parameter Name="lesson_theme" Type="varchar" Mode="In" />
+          <Parameter Name="number_of_hours" Type="int" Mode="In" />
+          <Parameter Name="grade_name" Type="varchar" Mode="In" />
+          <Parameter Name="home_task" Type="varchar" Mode="In" />
+          <Parameter Name="teacher_id" Type="int" Mode="In" />
+          <Parameter Name="addedLesson_id" Type="int" Mode="InOut" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="schooljournalModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SchoolJournalEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="schooljournalModel.Admin" />
+          <EntitySet Name="Grades" EntityType="schooljournalModel.Grade" />
+          <EntitySet Name="Lessons" EntityType="schooljournalModel.Lesson" />
+          <EntitySet Name="Marks" EntityType="schooljournalModel.Mark" />
+          <EntitySet Name="Parents" EntityType="schooljournalModel.Parent" />
+          <EntitySet Name="Students" EntityType="schooljournalModel.Student" />
+          <EntitySet Name="Subjects" EntityType="schooljournalModel.Subject" />
+          <EntitySet Name="Teachers" EntityType="schooljournalModel.Teacher" />
+          <EntitySet Name="Users" EntityType="schooljournalModel.User" />
+          <AssociationSet Name="R_33" Association="schooljournalModel.R_33">
+            <End Role="user" EntitySet="Users" />
+            <End Role="admin" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="R_25" Association="schooljournalModel.R_25">
+            <End Role="grade" EntitySet="Grades" />
+            <End Role="lesson" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="R_29" Association="schooljournalModel.R_29">
+            <End Role="grade" EntitySet="Grades" />
+            <End Role="student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="R_15" Association="schooljournalModel.R_15">
+            <End Role="subject" EntitySet="Subjects" />
+            <End Role="lesson" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="R_32" Association="schooljournalModel.R_32">
+            <End Role="user" EntitySet="Users" />
+            <End Role="parent" EntitySet="Parents" />
+          </AssociationSet>
+          <AssociationSet Name="R_31" Association="schooljournalModel.R_31">
+            <End Role="user" EntitySet="Users" />
+            <End Role="student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="R_34" Association="schooljournalModel.R_34">
+            <End Role="user" EntitySet="Users" />
+            <End Role="teacher" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="parent_student" Association="schooljournalModel.parent_student">
+            <End Role="student" EntitySet="Students" />
+            <End Role="parent" EntitySet="Parents" />
+          </AssociationSet>
+          <AssociationSet Name="teacher_lesson" Association="schooljournalModel.teacher_lesson">
+            <End Role="teacher" EntitySet="Teachers" />
+            <End Role="lesson" EntitySet="Lessons" />
+          </AssociationSet>
+          <FunctionImport Name="getAvgMark">
+            <Parameter Name="stud_id" Mode="In" Type="Int32" />
+            <Parameter Name="avg_mark" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="newGroup">
+            <Parameter Name="grade_name" Mode="In" Type="String" />
+            <Parameter Name="subj_title" Mode="In" Type="String" />
+            <Parameter Name="teacher_full_name" Mode="In" Type="String" />
+            <Parameter Name="teacher_id" Mode="In" Type="Int32" />
+            <Parameter Name="description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="placeMark">
+            <Parameter Name="lesson_id" Mode="In" Type="Int32" />
+            <Parameter Name="student_id" Mode="In" Type="Int32" />
+            <Parameter Name="mark_value" Mode="In" Type="Decimal" />
+            <Parameter Name="is_Present" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="startNewLesson">
+            <Parameter Name="subj_title" Mode="In" Type="String" />
+            <Parameter Name="lesson_theme" Mode="In" Type="String" />
+            <Parameter Name="number_of_hours" Mode="In" Type="Int32" />
+            <Parameter Name="grade_name" Mode="In" Type="String" />
+            <Parameter Name="home_task" Mode="In" Type="String" />
+            <Parameter Name="teacher_id" Mode="In" Type="Int32" />
+            <Parameter Name="addedLesson_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="addNewStudent">
+            <Parameter Name="fname" Mode="In" Type="String" />
+            <Parameter Name="lname" Mode="In" Type="String" />
+            <Parameter Name="patronymic" Mode="In" Type="String" />
+            <Parameter Name="dob" Mode="In" Type="DateTime" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="grade_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="attendanceJournal" EntityType="schooljournalModel.attendanceJournal" />
+          <EntitySet Name="Groups" EntityType="schooljournalModel.Group" />
+          <AssociationSet Name="R_26" Association="schooljournalModel.R_26">
+            <End Role="Grade" EntitySet="Grades" />
+            <End Role="group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_teacher_group" Association="schooljournalModel.FK_teacher_group">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="R_27" Association="schooljournalModel.R_27">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="student_group" Association="schooljournalModel.student_group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <EntitySet Name="lesson_student" EntityType="schooljournalModel.lesson_student" />
+          <AssociationSet Name="R_21" Association="schooljournalModel.R_21">
+            <End Role="Lesson" EntitySet="Lessons" />
+            <End Role="lesson_student" EntitySet="lesson_student" />
+          </AssociationSet>
+          <AssociationSet Name="R_22" Association="schooljournalModel.R_22">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="lesson_student" EntitySet="lesson_student" />
+          </AssociationSet>
+          <AssociationSet Name="R_40" Association="schooljournalModel.R_40">
+            <End Role="Mark" EntitySet="Marks" />
+            <End Role="lesson_student" EntitySet="lesson_student" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="has_delete_rights" Type="Boolean" Nullable="false" />
+          <Property Name="AdminID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="schooljournalModel.R_33" FromRole="admin" ToRole="user" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="GradeID" />
+          </Key>
+          <Property Name="GradeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Section" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="GradeNo" Type="Byte" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="lessons" Relationship="schooljournalModel.R_25" FromRole="grade" ToRole="lesson" />
+          <NavigationProperty Name="students" Relationship="schooljournalModel.R_29" FromRole="grade" ToRole="student" />
+          <NavigationProperty Name="groups" Relationship="schooljournalModel.R_26" FromRole="Grade" ToRole="group" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="LessonID" />
+          </Key>
+          <Property Name="LessonID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NumberOfHours" Type="Int32" Nullable="false" />
+          <Property Name="Theme" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+          <Property Name="GradeID" Type="Int32" Nullable="false" />
+          <Property Name="HomeTask" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="grade" Relationship="schooljournalModel.R_25" FromRole="lesson" ToRole="grade" />
+          <NavigationProperty Name="subject" Relationship="schooljournalModel.R_15" FromRole="lesson" ToRole="subject" />
+          <NavigationProperty Name="teachers" Relationship="schooljournalModel.teacher_lesson" FromRole="lesson" ToRole="teacher" />
+          <NavigationProperty Name="lesson_student" Relationship="schooljournalModel.R_21" FromRole="Lesson" ToRole="lesson_student" />
+        </EntityType>
+        <EntityType Name="Mark">
+          <Key>
+            <PropertyRef Name="MarkID" />
+          </Key>
+          <Property Name="MarkID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="lesson_student" Relationship="schooljournalModel.R_40" FromRole="Mark" ToRole="lesson_student" />
+        </EntityType>
+        <EntityType Name="Parent">
+          <Key>
+            <PropertyRef Name="ParentID" />
+          </Key>
+          <Property Name="Job" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="schooljournalModel.R_32" FromRole="parent" ToRole="user" />
+          <NavigationProperty Name="students" Relationship="schooljournalModel.parent_student" FromRole="parent" ToRole="student" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="DateOfJoin" Type="DateTime" Precision="3" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="GradeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="grade" Relationship="schooljournalModel.R_29" FromRole="student" ToRole="grade" />
+          <NavigationProperty Name="user" Relationship="schooljournalModel.R_31" FromRole="student" ToRole="user" />
+          <NavigationProperty Name="parents" Relationship="schooljournalModel.parent_student" FromRole="student" ToRole="parent" />
+          <NavigationProperty Name="groups" Relationship="schooljournalModel.student_group" FromRole="Student" ToRole="Group" />
+          <NavigationProperty Name="lesson_student" Relationship="schooljournalModel.R_22" FromRole="Student" ToRole="lesson_student" />
+          </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="lessons" Relationship="schooljournalModel.R_15" FromRole="subject" ToRole="lesson" />
+          <NavigationProperty Name="groups" Relationship="schooljournalModel.R_27" FromRole="Subject" ToRole="group" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherID" />
+          </Key>
+          <Property Name="Specialization" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Category" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="TeacherID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="schooljournalModel.R_34" FromRole="teacher" ToRole="user" />
+          <NavigationProperty Name="lessons" Relationship="schooljournalModel.teacher_lesson" FromRole="teacher" ToRole="lesson" />
+          <NavigationProperty Name="groups" Relationship="schooljournalModel.FK_teacher_group" FromRole="Teacher" ToRole="group" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="admin" Relationship="schooljournalModel.R_33" FromRole="user" ToRole="admin" />
+          <NavigationProperty Name="parent" Relationship="schooljournalModel.R_32" FromRole="user" ToRole="parent" />
+          <NavigationProperty Name="student" Relationship="schooljournalModel.R_31" FromRole="user" ToRole="student" />
+          <NavigationProperty Name="teacher" Relationship="schooljournalModel.R_34" FromRole="user" ToRole="teacher" />
+        </EntityType>
+        <Association Name="R_33">
+          <End Role="user" Type="schooljournalModel.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="admin" Type="schooljournalModel.Admin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="admin">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_25">
+          <End Role="grade" Type="schooljournalModel.Grade" Multiplicity="1" />
+          <End Role="lesson" Type="schooljournalModel.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grade">
+              <PropertyRef Name="GradeID" />
+            </Principal>
+            <Dependent Role="lesson">
+              <PropertyRef Name="GradeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_29">
+          <End Role="grade" Type="schooljournalModel.Grade" Multiplicity="1" />
+          <End Role="student" Type="schooljournalModel.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grade">
+              <PropertyRef Name="GradeID" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="GradeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_15">
+          <End Role="subject" Type="schooljournalModel.Subject" Multiplicity="1" />
+          <End Role="lesson" Type="schooljournalModel.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="lesson">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_32">
+          <End Role="user" Type="schooljournalModel.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="parent" Type="schooljournalModel.Parent" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="parent">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_31">
+          <End Role="user" Type="schooljournalModel.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="student" Type="schooljournalModel.Student" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_34">
+          <End Role="user" Type="schooljournalModel.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="teacher" Type="schooljournalModel.Teacher" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="teacher">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="parent_student">
+          <End Role="student" Type="schooljournalModel.Student" Multiplicity="*" />
+          <End Role="parent" Type="schooljournalModel.Parent" Multiplicity="*" />
+        </Association>
+        <Association Name="teacher_lesson">
+          <End Role="teacher" Type="schooljournalModel.Teacher" Multiplicity="*" />
+          <End Role="lesson" Type="schooljournalModel.Lesson" Multiplicity="*" />
+        </Association>
+        <EntityType Name="attendanceJournal">
+          <Key>
+            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="Last_Name" />
+            <PropertyRef Name="First_Name" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Grade" />
+            <PropertyRef Name="Subject" />
+          </Key>
+          <Property Type="Int32" Name="StudentID" Nullable="false" />
+          <Property Type="String" Name="Last_Name" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsPresent" />
+          <Property Type="Decimal" Name="Mark" Precision="4" Scale="2" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <Property Type="Byte" Name="Grade" Nullable="false" />
+          <Property Type="String" Name="Section" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="TeacherID" />
+          <Property Type="String" Name="Subject" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="GradeID" Nullable="false" />
+          <Property Type="Int32" Name="SubjectID" Nullable="false" />
+          <Property Type="String" Name="Description" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TeacherID" Nullable="false" />
+          <NavigationProperty Name="grade" Relationship="schooljournalModel.R_26" FromRole="group" ToRole="Grade" />
+          <NavigationProperty Name="teacher" Relationship="schooljournalModel.FK_teacher_group" FromRole="group" ToRole="Teacher" />
+          <NavigationProperty Name="subject" Relationship="schooljournalModel.R_27" FromRole="group" ToRole="Subject" />
+          <NavigationProperty Name="students" Relationship="schooljournalModel.student_group" FromRole="Group" ToRole="Student" />
+        </EntityType>
+        <Association Name="R_26">
+          <End Type="schooljournalModel.Grade" Role="Grade" Multiplicity="1" />
+          <End Type="schooljournalModel.Group" Role="group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="GradeID" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="GradeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_teacher_group">
+          <End Type="schooljournalModel.Teacher" Role="Teacher" Multiplicity="1" />
+          <End Type="schooljournalModel.Group" Role="group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherID" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_27">
+          <End Type="schooljournalModel.Subject" Role="Subject" Multiplicity="1" />
+          <End Type="schooljournalModel.Group" Role="group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="student_group">
+          <End Type="schooljournalModel.Group" Role="Group" Multiplicity="*" />
+          <End Type="schooljournalModel.Student" Role="Student" Multiplicity="*" />
+        </Association>
+        <EntityType Name="lesson_student">
+          <Key>
+            <PropertyRef Name="LessonID" />
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Type="Int32" Name="LessonID" Nullable="false" />
+          <Property Type="Int32" Name="StudentID" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="Int32" Name="MarkID" />
+          <NavigationProperty Name="lesson" Relationship="schooljournalModel.R_21" FromRole="lesson_student" ToRole="Lesson" />
+          <NavigationProperty Name="student" Relationship="schooljournalModel.R_22" FromRole="lesson_student" ToRole="Student" />
+          <NavigationProperty Name="marks" Relationship="schooljournalModel.R_40" FromRole="lesson_student" ToRole="Mark" />
+        </EntityType>
+        <Association Name="R_21">
+          <End Type="schooljournalModel.Lesson" Role="Lesson" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="schooljournalModel.lesson_student" Role="lesson_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lesson">
+              <PropertyRef Name="LessonID" />
+            </Principal>
+            <Dependent Role="lesson_student">
+              <PropertyRef Name="LessonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_22">
+          <End Type="schooljournalModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="schooljournalModel.lesson_student" Role="lesson_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="lesson_student">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_40">
+          <End Type="schooljournalModel.Mark" Role="Mark" Multiplicity="0..1" />
+          <End Type="schooljournalModel.lesson_student" Role="lesson_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mark">
+              <PropertyRef Name="MarkID" />
+            </Principal>
+            <Dependent Role="lesson_student">
+              <PropertyRef Name="MarkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="schooljournalModelStoreContainer" CdmEntityContainer="SchoolJournalEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="schooljournalModel.Admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="has_delete_rights" ColumnName="has_delete_rights" />
+                <ScalarProperty Name="AdminID" ColumnName="admin_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grades">
+            <EntityTypeMapping TypeName="schooljournalModel.Grade">
+              <MappingFragment StoreEntitySet="grade">
+                <ScalarProperty Name="GradeID" ColumnName="grade_id" />
+                <ScalarProperty Name="Section" ColumnName="section" />
+                <ScalarProperty Name="GradeNo" ColumnName="grade_no" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lessons">
+            <EntityTypeMapping TypeName="schooljournalModel.Lesson">
+              <MappingFragment StoreEntitySet="lesson">
+                <ScalarProperty Name="LessonID" ColumnName="lesson_id" />
+                <ScalarProperty Name="Date" ColumnName="date" />
+                <ScalarProperty Name="NumberOfHours" ColumnName="numberOfHours" />
+                <ScalarProperty Name="Theme" ColumnName="theme" />
+                <ScalarProperty Name="SubjectID" ColumnName="subject_id" />
+                <ScalarProperty Name="GradeID" ColumnName="grade_id" />
+                <ScalarProperty Name="HomeTask" ColumnName="homeTask" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marks">
+            <EntityTypeMapping TypeName="schooljournalModel.Mark">
+              <MappingFragment StoreEntitySet="marks">
+                <ScalarProperty Name="MarkID" ColumnName="mark_id" />
+                <ScalarProperty Name="Value" ColumnName="value" />
+                <ScalarProperty Name="Description" ColumnName="descr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parents">
+            <EntityTypeMapping TypeName="schooljournalModel.Parent">
+              <MappingFragment StoreEntitySet="parent">
+                <ScalarProperty Name="Job" ColumnName="job" />
+                <ScalarProperty Name="ParentID" ColumnName="parent_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="schooljournalModel.Student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="DateOfJoin" ColumnName="date_of_join" />
+                <ScalarProperty Name="StudentID" ColumnName="student_id" />
+                <ScalarProperty Name="GradeID" ColumnName="grade_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="schooljournalModel.Subject">
+              <MappingFragment StoreEntitySet="subject">
+                <ScalarProperty Name="SubjectID" ColumnName="subject_id" />
+                <ScalarProperty Name="Title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="schooljournalModel.Teacher">
+              <MappingFragment StoreEntitySet="teacher">
+                <ScalarProperty Name="Specialization" ColumnName="specialization" />
+                <ScalarProperty Name="Category" ColumnName="category" />
+                <ScalarProperty Name="TeacherID" ColumnName="teacher_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="schooljournalModel.User">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="UserID" ColumnName="u_id" />
+                <ScalarProperty Name="FirstName" ColumnName="fname" />
+                <ScalarProperty Name="LastName" ColumnName="lname" />
+                <ScalarProperty Name="Patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="dob" />
+                <ScalarProperty Name="Email" ColumnName="email" />
+                <ScalarProperty Name="Password" ColumnName="password" />
+                <ScalarProperty Name="Phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="parent_student" TypeName="schooljournalModel.parent_student" StoreEntitySet="parent_student">
+            <EndProperty Name="student">
+              <ScalarProperty Name="StudentID" ColumnName="student_id" />
+            </EndProperty>
+            <EndProperty Name="parent">
+              <ScalarProperty Name="ParentID" ColumnName="parent_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="teacher_lesson" TypeName="schooljournalModel.teacher_lesson" StoreEntitySet="teacher_lesson">
+            <EndProperty Name="teacher">
+              <ScalarProperty Name="TeacherID" ColumnName="teacher_id" />
+            </EndProperty>
+            <EndProperty Name="lesson">
+              <ScalarProperty Name="LessonID" ColumnName="lesson_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="getAvgMark" FunctionName="schooljournalModel.Store.getAvgMark" />
+          <FunctionImportMapping FunctionImportName="newGroup" FunctionName="schooljournalModel.Store.newGroup" />
+          <FunctionImportMapping FunctionImportName="placeMark" FunctionName="schooljournalModel.Store.placeMark" />
+          <FunctionImportMapping FunctionImportName="startNewLesson" FunctionName="schooljournalModel.Store.startNewLesson" />
+          <FunctionImportMapping FunctionImportName="addNewStudent" FunctionName="schooljournalModel.Store.addNewStudent" />
+          <EntitySetMapping Name="attendanceJournal">
+            <EntityTypeMapping TypeName="schooljournalModel.attendanceJournal">
+              <MappingFragment StoreEntitySet="attendanceJournal">
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
+                <ScalarProperty Name="First_Name" ColumnName="First Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="schooljournalModel.Group">
+              <MappingFragment StoreEntitySet="group">
+                <ScalarProperty Name="TeacherID" ColumnName="teacher_id" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="SubjectID" ColumnName="subject_id" />
+                <ScalarProperty Name="GradeID" ColumnName="grade_id" />
+                <ScalarProperty Name="GroupID" ColumnName="group_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="student_group" TypeName="schooljournalModel.student_group" StoreEntitySet="student_group">
+            <EndProperty Name="Student">
+              <ScalarProperty Name="StudentID" ColumnName="student_id" />
+            </EndProperty>
+            <EndProperty Name="Group">
+              <ScalarProperty Name="GroupID" ColumnName="group_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="lesson_student">
+            <EntityTypeMapping TypeName="schooljournalModel.lesson_student">
+              <MappingFragment StoreEntitySet="lesson_student">
+                <ScalarProperty Name="MarkID" ColumnName="mark_id" />
+                <ScalarProperty Name="IsPresent" ColumnName="isPresent" />
+                <ScalarProperty Name="StudentID" ColumnName="student_id" />
+                <ScalarProperty Name="LessonID" ColumnName="lesson_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

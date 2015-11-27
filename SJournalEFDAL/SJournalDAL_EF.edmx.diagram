@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea66c8ec04424de4a4e5bfdfabab498e" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="schooljournalModel.Admin" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooljournalModel.Grade" Width="1.5" PointX="3.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooljournalModel.Lesson" Width="1.5" PointX="8.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooljournalModel.Mark" Width="1.5" PointX="8.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooljournalModel.Parent" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooljournalModel.Student" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooljournalModel.Subject" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooljournalModel.Teacher" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooljournalModel.User" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="schooljournalModel.R_33" ManuallyRouted="false" />
+        <AssociationConnector Association="schooljournalModel.R_25" ManuallyRouted="true" >
+          <ConnectorPoint PointX="4.90625" PointY="4.9898893229166665" />
+          <ConnectorPoint PointX="4.90625" PointY="14.21875" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="14.21875" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="14.21875" />
+          <ConnectorPoint PointX="8.25" PointY="14.21875" />
+        </AssociationConnector>
+        <AssociationConnector Association="schooljournalModel.R_29" ManuallyRouted="false" />
+        <AssociationConnector Association="schooljournalModel.R_15" ManuallyRouted="false" />
+        <AssociationConnector Association="schooljournalModel.R_32" ManuallyRouted="false" />
+        <AssociationConnector Association="schooljournalModel.R_31" ManuallyRouted="false" />
+        <AssociationConnector Association="schooljournalModel.R_34" ManuallyRouted="false" />
+        <AssociationConnector Association="schooljournalModel.parent_student" ManuallyRouted="false" />
+        <AssociationConnector Association="schooljournalModel.teacher_lesson" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="schooljournalModel.attendanceJournal" Width="1.5" PointX="8.7973159629839088" PointY="30.801529630460557" />
+        <EntityTypeShape EntityType="schooljournalModel.Group" Width="1.5" PointX="0.58997163204009251" PointY="9.3162039561738279" />
+        <AssociationConnector Association="schooljournalModel.R_26" />
+        <AssociationConnector Association="schooljournalModel.FK_teacher_group" />
+        <AssociationConnector Association="schooljournalModel.R_27" />
+        <AssociationConnector Association="schooljournalModel.student_group" />
+        <EntityTypeShape EntityType="schooljournalModel.lesson_student" Width="1.5" PointX="10.5" PointY="12.125" />
+        <AssociationConnector Association="schooljournalModel.R_21" />
+        <AssociationConnector Association="schooljournalModel.R_22" />
+        <AssociationConnector Association="schooljournalModel.R_40" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
