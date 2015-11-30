@@ -21,7 +21,7 @@ namespace SchoolJournalGUI
         string GradeName { get; set; }
         string HomeTask { get; set; }
         ILessonInfo newLesson;
-        List<IStudentInfo> studentsOnTheLesson;
+        List<StudentInfo> studentsOnTheLesson;
 
         public NewLessonWindow(int teacherID, ILessonInfo newLesson)
         {
@@ -49,7 +49,7 @@ namespace SchoolJournalGUI
                                          new DataGridViewTextBoxColumn { Name = "Mark", HeaderText = "Mark", ValueType=typeof(decimal?) },
                                          new DataGridViewCheckBoxColumn { Name = "IsPresent", HeaderText="Is Present" });
 
-            foreach (IStudentInfo s in studentsOnTheLesson)
+            foreach (StudentInfo s in studentsOnTheLesson)
             {
                 gridJournal.Rows.Add(string.Format("{0} {1}", s.LastName, s.FirstName),
                                      string.Empty,

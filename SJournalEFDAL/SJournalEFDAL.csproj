@@ -54,6 +54,7 @@
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
     <Compile Include="AttendanceJournalDAL.cs" />
+    <Compile Include="UsersInfo.cs" />
     <Compile Include="Grade.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>

@@ -70,5 +70,18 @@ namespace SchoolJournalGUI
             wnd.Show();
             this.Hide();
         }
+
+        private void btnMyProfile_Click(object sender, EventArgs e)
+        {
+            TeacherInfo info = TeacherDAL.GetTeacher(this.teacher.UserID);
+            ProfileWindow wnd = new ProfileWindow(info, "Category", info.Category, "Specialization", info.Specialization);
+            wnd.FormClosed += ((o, s) =>
+            {
+                this.Show();
+            });
+            wnd.Owner = this;
+            wnd.Show();
+            this.Hide();
+        }
     }
 }

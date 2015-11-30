@@ -64,6 +64,7 @@
             this.btnMyProfile.TabIndex = 0;
             this.btnMyProfile.Text = "My Profile";
             this.btnMyProfile.UseVisualStyleBackColor = true;
+            this.btnMyProfile.Click += new System.EventHandler(this.btnMyProfile_Click);
             // 
             // btnViewJournal
             // 

@@ -59,5 +59,28 @@ namespace SJournalEFDAL
                 
             }
         }
+
+        public static void UpdateUserInfo(UserInfo info)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                EntityKey key = new EntityKey("SchoolJournalEntities.Users", "UserID", info.UserID);
+
+                User userToUpdate = (User)context.Set<User>().Find(info.UserID);
+                userToUpdate.UserID = info.UserID;
+                userToUpdate.LastName = info.LastName;
+                userToUpdate.FirstName = info.FirstName;
+                userToUpdate.Patronymic = info.Patronymic;
+                userToUpdate.Password = info.Password;
+                userToUpdate.Email = info.Email;
+                userToUpdate.Phone = info.Phone;
+                userToUpdate.DateOfBirth = info.DoB;
+
+                context.SaveChanges();
+
+                
+            }
+            
+        }
     }
 }

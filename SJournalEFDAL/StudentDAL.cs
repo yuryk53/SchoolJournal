@@ -1,38 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Objects;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SJournalEFDAL
 {
-    public interface IStudentInfo
-    {
-        int StudentID {get;}
-        string LastName { get; }
-        string FirstName { get; }
-    }
-
-    public class StudentInfo : IStudentInfo
-    {
-        
-        public string LastName{get { return _lastName; }}
-        public string FirstName{get { return _firstName; }}
-        public int StudentID { get { return _studentID; } }
-
-        int _studentID;
-        string _lastName, _firstName;
-
-        public StudentInfo(Student s)
-        {
-            _studentID = s.user.UserID;
-            _lastName = s.user.LastName;
-            _firstName = s.user.FirstName;
-            
-        }
-    }
-
     public class StudentDAL
     {
         public static double GetAvgMark(int studentID)
@@ -64,7 +40,7 @@ namespace SJournalEFDAL
             }
         }
 
-        public static List<IStudentInfo> GetAllStudentsOnTheLesson(int lessonID)
+        public static List<StudentInfo> GetAllStudentsOnTheLesson(int lessonID)
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
@@ -76,9 +52,12 @@ namespace SJournalEFDAL
                                orderby student.user.LastName, student.user.FirstName
                                select student;
                                
-                List<IStudentInfo> stds = new List<IStudentInfo>();
+                List<StudentInfo> stds = new List<StudentInfo>();
                 foreach (Student s in students)
+                {
                     stds.Add(new StudentInfo(s));
+                }
+
                 return stds;
             }
         }

@@ -23,5 +23,14 @@ namespace SJournalEFDAL
         {
             return Util.PopulateFromStoredProcedure("getTeacherGroups", new SqlParameter("@teacher_id", teacherID));
         }
+
+        public static TeacherInfo GetTeacher(int teacherID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                var teachers = from t in context.Teachers where t.TeacherID == teacherID select t;
+                return new TeacherInfo(teachers.First());
+            }
+        }
     }
 }
