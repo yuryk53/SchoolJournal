@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -53,18 +54,19 @@
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
     <Compile Include="AttendanceJournalDAL.cs" />
+    <Compile Include="Grade.cs">
+      <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Grade2.cs" />
     <Compile Include="GradesDAL.cs" />
     <Compile Include="Group.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
-    <Compile Include="LessonDAL.cs" />
-    <Compile Include="Grade.cs">
-      <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
-    </Compile>
+    <Compile Include="GroupDAL.cs" />
     <Compile Include="Lesson.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
+    <Compile Include="LessonDAL.cs" />
     <Compile Include="lesson_student.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
@@ -102,10 +104,12 @@
     <Compile Include="Teacher.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
+    <Compile Include="TeacherDAL.cs" />
     <Compile Include="User.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
     <Compile Include="UsersDAL.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

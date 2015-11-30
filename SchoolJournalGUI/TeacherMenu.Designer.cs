@@ -93,6 +93,7 @@
             this.btnListOfStudents.TabIndex = 3;
             this.btnListOfStudents.Text = "List of students";
             this.btnListOfStudents.UseVisualStyleBackColor = true;
+            this.btnListOfStudents.Click += new System.EventHandler(this.btnListOfStudents_Click);
             // 
             // btnMyStudyGroups
             // 
@@ -102,6 +103,7 @@
             this.btnMyStudyGroups.TabIndex = 4;
             this.btnMyStudyGroups.Text = "My Study Groups";
             this.btnMyStudyGroups.UseVisualStyleBackColor = true;
+            this.btnMyStudyGroups.Click += new System.EventHandler(this.btnMyStudyGroups_Click);
             // 
             // TeacherMenu
             // 

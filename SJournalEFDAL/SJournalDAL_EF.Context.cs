@@ -161,5 +161,14 @@ namespace SJournalEFDAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("addNewStudent", fnameParameter, lnameParameter, patronymicParameter, dobParameter, emailParameter, passwordParameter, phoneParameter, grade_nameParameter);
         }
+    
+        public virtual int getTeacherStudents(Nullable<int> teacher_id)
+        {
+            var teacher_idParameter = teacher_id.HasValue ?
+                new ObjectParameter("teacher_id", teacher_id) :
+                new ObjectParameter("teacher_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("getTeacherStudents", teacher_idParameter);
+        }
     }
 }

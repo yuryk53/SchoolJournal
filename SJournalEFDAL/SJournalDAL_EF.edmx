@@ -515,6 +515,9 @@
           <Parameter Name="stud_id" Type="int" Mode="In" />
           <Parameter Name="avg_mark" Type="decimal" Mode="InOut" />
         </Function>
+        <Function Name="getTeacherStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="teacher_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="newGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="grade_name" Type="varchar" Mode="In" />
           <Parameter Name="subj_title" Type="varchar" Mode="In" />
@@ -654,6 +657,9 @@
             <End Role="Mark" EntitySet="Marks" />
             <End Role="lesson_student" EntitySet="lesson_student" />
           </AssociationSet>
+          <FunctionImport Name="getTeacherStudents">
+          <Parameter Name="teacher_id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Admin">
           <Key>
@@ -1144,6 +1150,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getTeacherStudents" FunctionName="schooljournalModel.Store.getTeacherStudents" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

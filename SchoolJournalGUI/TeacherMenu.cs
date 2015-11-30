@@ -45,5 +45,30 @@ namespace SchoolJournalGUI
             nlWindow.Owner = this;
             nlWindow.ShowDialog();
         }
+
+        private void btnListOfStudents_Click(object sender, EventArgs e)
+        {
+            //LIst of students window
+            StudentListWindow wnd = new StudentListWindow(teacher.UserID);
+            wnd.FormClosed += ((o, s) =>
+            {
+                this.Show();
+            });
+            wnd.Owner = this;
+            wnd.Show();
+            this.Hide();
+        }
+
+        private void btnMyStudyGroups_Click(object sender, EventArgs e)
+        {
+            TeacherStudyGroups wnd = new TeacherStudyGroups(teacher.UserID);
+            wnd.FormClosed += ((o, s) =>
+            {
+                this.Show();
+            });
+            wnd.Owner = this;
+            wnd.Show();
+            this.Hide();
+        }
     }
 }
