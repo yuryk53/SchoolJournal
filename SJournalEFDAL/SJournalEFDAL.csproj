@@ -38,8 +38,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,10 +52,16 @@
     <Compile Include="Admin.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
+    <Compile Include="AdminDAL.cs" />
     <Compile Include="attendanceJournal.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
     <Compile Include="AttendanceJournalDAL.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UsersInfo.cs" />
     <Compile Include="Grade.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
@@ -137,6 +145,12 @@
       <DependentUpon>SJournalDAL_EF.edmx</DependentUpon>
       <LastGenOutput>SJournalDAL_EF.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

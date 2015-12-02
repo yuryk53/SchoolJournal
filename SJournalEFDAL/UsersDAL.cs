@@ -64,8 +64,6 @@ namespace SJournalEFDAL
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
-                EntityKey key = new EntityKey("SchoolJournalEntities.Users", "UserID", info.UserID);
-
                 User userToUpdate = (User)context.Set<User>().Find(info.UserID);
                 userToUpdate.UserID = info.UserID;
                 userToUpdate.LastName = info.LastName;
@@ -76,11 +74,27 @@ namespace SJournalEFDAL
                 userToUpdate.Phone = info.Phone;
                 userToUpdate.DateOfBirth = info.DoB;
 
-                context.SaveChanges();
-
-                
+                context.SaveChanges();               
             }
             
+        }
+
+        public static void ChangeUserPassword(int UserID, string oldPass, string newPass)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                if (newPass.Length > 0)
+                {
+                    User userToUpdate = (User)context.Set<User>().Find(UserID);
+                    if (userToUpdate.Password.Equals(oldPass))
+                    {
+                        userToUpdate.Password = newPass;
+                        context.SaveChanges();
+                    }
+                    else throw new ArgumentException("Old password is incorrect!");
+                }
+                else throw new ArgumentOutOfRangeException("New password is empty!");
+            }
         }
     }
 }

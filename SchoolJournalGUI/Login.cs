@@ -41,7 +41,14 @@ namespace SchoolJournalGUI
             switch (category)
             {
                 case UserCategory.ADMIN: //open admin window
-                    MessageBox.Show("Admin");
+                    AdminMenu a_menu = new AdminMenu(user.UserID);
+                    a_menu.FormClosed += (o, s) =>
+                    {
+                        Application.Exit();
+                    };
+                    a_menu.Owner = this;
+                    a_menu.Show();
+                    this.Hide();
                     break;
                 case UserCategory.PARENT: //open parent window
                     MessageBox.Show("Parent");
@@ -50,19 +57,28 @@ namespace SchoolJournalGUI
                     MessageBox.Show("Student");
                     break;
                 case UserCategory.TEACHER: //open teacher window
-                    TeacherMenu menu = new TeacherMenu(user);
-                    menu.FormClosed += (o, s) =>
+                    TeacherMenu t_menu = new TeacherMenu(user.UserID);
+                    t_menu.FormClosed += (o, s) =>
                     {
                         Application.Exit();
                     };
-                    menu.Owner = this;
-                    menu.Show();
+                    t_menu.Owner = this;
+                    t_menu.Show();
                     this.Hide();
                     break;
                 case UserCategory.NONE: //show error
                     goto default;
                 default: MessageBox.Show("Internal error occured in resolving user category!");
                     return;
+            }
+        }
+
+        private void txtPassword_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSubmit.PerformClick();
+                e.Handled = true;
             }
         }
     }

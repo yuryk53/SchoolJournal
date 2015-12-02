@@ -12,11 +12,6 @@ using SJournalEFDAL;
 
 namespace SchoolJournalGUI
 {
-    enum Mode
-    {
-        EDIT,
-        NORMAL
-    }
     public partial class ProfileWindow : Form
     {
         UserInfo info;
@@ -107,6 +102,12 @@ namespace SchoolJournalGUI
                 AllowEdit = false;
             }
             else AllowEdit = true;
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            ChangePasswordWindow wnd = new ChangePasswordWindow(info.UserID);
+            wnd.ShowDialog();
         }
     }
 }

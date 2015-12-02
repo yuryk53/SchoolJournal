@@ -14,17 +14,17 @@ namespace SchoolJournalGUI
 {
     public partial class TeacherMenu : Form
     {
-        User teacher;
-        public TeacherMenu(User teacher)
+        int TeacherID { get; set; }
+        public TeacherMenu(int teacherID)
         {
-            this.teacher = teacher;
+            this.TeacherID = teacherID;
             InitializeComponent();
         }
 
         private void btnViewJournal_Click(object sender, EventArgs e)
         {
             //open viewJournal window
-            JournalViewWindow jvWindow = new JournalViewWindow(teacher.UserID);
+            JournalViewWindow jvWindow = new JournalViewWindow(TeacherID);
             jvWindow.FormClosed+=((o,s) =>
             {
                 this.Show();
@@ -37,7 +37,7 @@ namespace SchoolJournalGUI
         private void btnStartNewLesson_Click(object sender, EventArgs e)
         {
             //open StartLessonWindow
-            NewLessonDialogWindow nlWindow = new NewLessonDialogWindow(teacher.UserID);
+            NewLessonDialogWindow nlWindow = new NewLessonDialogWindow(TeacherID);
             nlWindow.FormClosed += ((o,s) =>
                 {
                     this.Show();
@@ -49,7 +49,7 @@ namespace SchoolJournalGUI
         private void btnListOfStudents_Click(object sender, EventArgs e)
         {
             //LIst of students window
-            StudentListWindow wnd = new StudentListWindow(teacher.UserID);
+            StudentListWindow wnd = new StudentListWindow(TeacherID);
             wnd.FormClosed += ((o, s) =>
             {
                 this.Show();
@@ -61,7 +61,7 @@ namespace SchoolJournalGUI
 
         private void btnMyStudyGroups_Click(object sender, EventArgs e)
         {
-            TeacherStudyGroups wnd = new TeacherStudyGroups(teacher.UserID);
+            TeacherStudyGroups wnd = new TeacherStudyGroups(TeacherID);
             wnd.FormClosed += ((o, s) =>
             {
                 this.Show();
@@ -73,7 +73,7 @@ namespace SchoolJournalGUI
 
         private void btnMyProfile_Click(object sender, EventArgs e)
         {
-            TeacherInfo info = TeacherDAL.GetTeacher(this.teacher.UserID);
+            TeacherInfo info = TeacherDAL.GetTeacher(TeacherID);
             ProfileWindow wnd = new ProfileWindow(info, "Category", info.Category, "Specialization", info.Specialization);
             wnd.FormClosed += ((o, s) =>
             {
