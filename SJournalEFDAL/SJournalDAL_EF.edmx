@@ -34,6 +34,18 @@
       [attendanceJournal].[TeacherID] AS [TeacherID]
       FROM [dbo].[attendanceJournal] AS [attendanceJournal]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="studentsList" EntityType="schooljournalModel.Store.studentsList" store:Type="Views" store:Schema="dbo" store:Name="studentsList">
+            <DefiningQuery>SELECT 
+      [studentsList].[Student ID] AS [Student ID], 
+      [studentsList].[Last name] AS [Last name], 
+      [studentsList].[First name] AS [First name], 
+      [studentsList].[patronymic] AS [patronymic], 
+      [studentsList].[Grade] AS [Grade], 
+      [studentsList].[email] AS [email], 
+      [studentsList].[password] AS [password], 
+      [studentsList].[Date of join] AS [Date of join]
+      FROM [dbo].[studentsList] AS [studentsList]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_student_group_group" Association="schooljournalModel.Store.FK_student_group_group">
             <End Role="group" EntitySet="group" />
             <End Role="student_group" EntitySet="student_group" />
@@ -256,6 +268,27 @@
           <Property Name="Section" Type="char" MaxLength="1" />
           <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="TeacherID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'schooljournal.dbo.studentsList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="studentsList">
+          <Key>
+            <PropertyRef Name="Student ID" />
+            <PropertyRef Name="Last name" />
+            <PropertyRef Name="First name" />
+            <PropertyRef Name="patronymic" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="Student ID" Type="int" Nullable="false" />
+          <Property Name="Last name" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="First name" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="patronymic" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Grade" Type="varchar" MaxLength="11" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Date of join" Type="datetime" />
         </EntityType>
         <Association Name="FK_student_group_group">
           <End Role="group" Type="schooljournalModel.Store.group" Multiplicity="1" />
@@ -515,6 +548,13 @@
           <Parameter Name="stud_id" Type="int" Mode="In" />
           <Parameter Name="avg_mark" Type="decimal" Mode="InOut" />
         </Function>
+        <Function Name="getDistinctGrades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getGroupStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="group_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getTeacherGroups" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="teacher_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="getTeacherStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="teacher_id" Type="int" Mode="In" />
         </Function>
@@ -660,6 +700,14 @@
           <FunctionImport Name="getTeacherStudents">
           <Parameter Name="teacher_id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="getDistinctGrades" ReturnType="Collection(String)" />
+          <FunctionImport Name="getGroupStudents" ReturnType="Collection(schooljournalModel.getGroupStudents_Result)">
+          <Parameter Name="group_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getTeacherGroups" ReturnType="Collection(schooljournalModel.getTeacherGroups_Result)">
+          <Parameter Name="teacher_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="studentsList" EntityType="schooljournalModel.studentsList" />
         </EntityContainer>
         <EntityType Name="Admin">
           <Key>
@@ -990,6 +1038,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="getGroupStudents_Result">
+          <Property Type="Int32" Name="Group_ID" Nullable="false" />
+          <Property Type="String" Name="Last_Name" Nullable="false" MaxLength="45" />
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="45" />
+        </ComplexType>
+        <ComplexType Name="getTeacherGroups_Result">
+          <Property Type="Int32" Name="Group_ID" Nullable="false" />
+          <Property Type="String" Name="Subject" Nullable="false" MaxLength="45" />
+          <Property Type="Byte" Name="Grade" Nullable="false" />
+          <Property Type="String" Name="Section" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="45" />
+        </ComplexType>
+        <EntityType Name="studentsList">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+            <PropertyRef Name="Last_name" />
+            <PropertyRef Name="First_name" />
+            <PropertyRef Name="patronymic" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Type="Int32" Name="Student_ID" Nullable="false" />
+          <Property Type="String" Name="Last_name" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="First_name" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="patronymic" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Grade" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Date_of_join" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1151,6 +1229,41 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="getTeacherStudents" FunctionName="schooljournalModel.Store.getTeacherStudents" />
+          <FunctionImportMapping FunctionImportName="getDistinctGrades" FunctionName="schooljournalModel.Store.getDistinctGrades" />
+          <FunctionImportMapping FunctionImportName="getGroupStudents" FunctionName="schooljournalModel.Store.getGroupStudents">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="schooljournalModel.getGroupStudents_Result">
+                <ScalarProperty Name="Group_ID" ColumnName="Group ID" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getTeacherGroups" FunctionName="schooljournalModel.Store.getTeacherGroups">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="schooljournalModel.getTeacherGroups_Result">
+                <ScalarProperty Name="Group_ID" ColumnName="Group ID" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="studentsList">
+            <EntityTypeMapping TypeName="schooljournalModel.studentsList">
+              <MappingFragment StoreEntitySet="studentsList">
+                <ScalarProperty Name="Date_of_join" ColumnName="Date of join" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="First_name" ColumnName="First name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last name" />
+                <ScalarProperty Name="Student_ID" ColumnName="Student ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

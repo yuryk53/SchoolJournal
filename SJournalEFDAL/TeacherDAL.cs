@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.EntityClient;
 
 using System.Configuration;
 

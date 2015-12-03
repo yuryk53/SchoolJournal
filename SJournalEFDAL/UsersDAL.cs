@@ -96,5 +96,41 @@ namespace SJournalEFDAL
                 else throw new ArgumentOutOfRangeException("New password is empty!");
             }
         }
+
+        public static void UpdateUser(int userID, string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
+                                          string email, string password, string phone)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                User userToUpdate = (User)context.Set<User>().Find(userID);
+
+                if(userToUpdate==null)
+                    throw new ArgumentException("UserID cannot be null!");
+                userToUpdate.FirstName = firstName;
+                userToUpdate.LastName = lastName;
+                userToUpdate.Patronymic = patronymic;
+                userToUpdate.DateOfBirth = dateOfBirth;
+                userToUpdate.Email = email;
+                userToUpdate.Password = password;
+                userToUpdate.Phone = phone;
+
+                context.SaveChanges();
+            }
+        }
+        public static void DeleteUser(int userID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                User userToDelete = (User)context.Set<User>().Find(userID);
+
+                if (userToDelete != null)
+                {
+                    context.Users.Remove(userToDelete);
+                    context.SaveChanges();
+                }
+                else throw new ArgumentOutOfRangeException("Invalid userID!");
+                
+            }
+        }
     }
 }

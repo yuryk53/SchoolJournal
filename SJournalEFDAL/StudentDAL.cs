@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Objects;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Data;
+using System.Data.Entity.Core.Objects;
 namespace SJournalEFDAL
 {
     public class StudentDAL
@@ -23,7 +24,7 @@ namespace SJournalEFDAL
             }
         }
 
-        public static void AddNewStudent(string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
+        public static int AddNewStudent(string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
                                           string email, string password, string phone, string gradeName)
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
@@ -36,7 +37,20 @@ namespace SJournalEFDAL
                                       password,
                                       phone,
                                       gradeName);
+                
                 context.SaveChanges();
+
+                var userID = (from user in context.Users
+                              where user.FirstName == firstName &&
+                                    user.LastName == lastName &&
+                                    user.Patronymic == patronymic &&
+                                    user.DateOfBirth == dateOfBirth &&
+                                    user.Email == email &&
+                                    user.Password == password &&
+                                    user.Phone == phone
+                              select user.UserID).First();
+                return userID;
+                                                               
             }
         }
 
@@ -61,5 +75,30 @@ namespace SJournalEFDAL
                 return stds;
             }
         }
+
+        public static void UpdateStudent(int studentID, string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
+                                          string email, string password, string phone, string gradeName, DateTime? dateOfJoin)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                
+                Student s = context.Set<Student>().Find(studentID);
+                if (s == null)
+                    throw new ArgumentNullException("StudentID to update cannot be null!");
+
+                UsersDAL.UpdateUser(studentID, firstName, lastName, patronymic, dateOfBirth, email, password, phone);
+
+                s.DateOfJoin = dateOfJoin;
+                //find grade ID
+                var gID = (from grade in context.Grades where (grade.GradeNo+grade.Section).Equals(gradeName) select grade.GradeID);
+                if (gID.Count() > 0)
+                {
+                    s.GradeID = gID.First();
+                }
+                else throw new ArgumentException("Invalid grade name!");
+                context.SaveChanges();
+            }
+        }
+
     }
 }

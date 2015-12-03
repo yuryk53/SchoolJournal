@@ -11,9 +11,8 @@ namespace SJournalEFDAL
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Objects;
-    using System.Data.Objects.DataClasses;
     using System.Linq;
     
     public partial class SchoolJournalEntities : DbContext
@@ -40,6 +39,7 @@ namespace SJournalEFDAL
         public DbSet<attendanceJournal> attendanceJournal { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<lesson_student> lesson_student { get; set; }
+        public DbSet<studentsList> studentsList { get; set; }
     
         public virtual int getAvgMark(Nullable<int> stud_id, ObjectParameter avg_mark)
         {
@@ -169,6 +169,29 @@ namespace SJournalEFDAL
                 new ObjectParameter("teacher_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("getTeacherStudents", teacher_idParameter);
+        }
+    
+        public virtual ObjectResult<string> getDistinctGrades()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getDistinctGrades");
+        }
+    
+        public virtual ObjectResult<getGroupStudents_Result> getGroupStudents(Nullable<int> group_id)
+        {
+            var group_idParameter = group_id.HasValue ?
+                new ObjectParameter("group_id", group_id) :
+                new ObjectParameter("group_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getGroupStudents_Result>("getGroupStudents", group_idParameter);
+        }
+    
+        public virtual ObjectResult<getTeacherGroups_Result> getTeacherGroups(Nullable<int> teacher_id)
+        {
+            var teacher_idParameter = teacher_id.HasValue ?
+                new ObjectParameter("teacher_id", teacher_id) :
+                new ObjectParameter("teacher_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTeacherGroups_Result>("getTeacherGroups", teacher_idParameter);
         }
     }
 }

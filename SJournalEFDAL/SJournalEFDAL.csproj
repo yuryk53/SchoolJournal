@@ -31,13 +31,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -57,10 +59,19 @@
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
     <Compile Include="AttendanceJournalDAL.cs" />
+    <Compile Include="getGroupStudents_Result.cs">
+      <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getTeacherGroups_Result.cs">
+      <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="studentsList.cs">
+      <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
     <Compile Include="UsersInfo.cs" />
     <Compile Include="Grade.cs">
@@ -122,11 +133,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="packages.config" />
     <EntityDeploy Include="SJournalDAL_EF.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SJournalDAL_EF.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="packages.config" />
     <None Include="SJournalDAL_EF.edmx.diagram">
       <DependentUpon>SJournalDAL_EF.edmx</DependentUpon>
     </None>

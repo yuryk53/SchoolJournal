@@ -39,6 +39,7 @@
         <AssociationConnector Association="schooljournalModel.R_21" />
         <AssociationConnector Association="schooljournalModel.R_22" />
         <AssociationConnector Association="schooljournalModel.R_40" />
+        <EntityTypeShape EntityType="schooljournalModel.studentsList" Width="1.5" PointX="3.1395769897566996" PointY="12.741124799820186" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
