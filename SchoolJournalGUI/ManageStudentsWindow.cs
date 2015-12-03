@@ -69,7 +69,8 @@ namespace SchoolJournalGUI
                         if (success)
                             parsedDateOfJoin = dateOfJoin;
                         //check all fields and save
-                        StudentDAL.UpdateStudent(int.Parse(dataGridStudents["StudentID", i].Value.ToString()),
+                        StudentDAL.UpdateStudent(new StudentInfo(
+                                int.Parse(dataGridStudents["StudentID", i].Value.ToString()),
                                 dataGridStudents["First_name", i].Value.ToString(),
                                 dataGridStudents["Last_name", i].Value.ToString(),
                                 dataGridStudents["Patronymic", i].Value.ToString(),
@@ -77,8 +78,9 @@ namespace SchoolJournalGUI
                                 dataGridStudents["Email", i].Value.ToString(),
                                 dataGridStudents["Password", i].Value.ToString(),
                                 null,
+                                0, //заглушка для gradeID
                                 dataGridStudents["Grade", i].EditedFormattedValue.ToString(),
-                                parsedDateOfJoin);
+                                parsedDateOfJoin));
                     }
                 }
             }

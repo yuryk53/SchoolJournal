@@ -18,6 +18,40 @@ namespace SJournalEFDAL
             return Util.PopulateFromStoredProcedure("getTeacherStudents", new SqlParameter("@teacher_id", teacherID));
         }
 
+        /// <summary>
+        /// Adds new teacher to the database.
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns>ID of newly added teacher.</returns>
+        public static int AddNewTeacher(TeacherInfo t)
+        {
+            int userID = UsersDAL.AddNewUser(t);
+
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                context.Teachers.Add(new Teacher
+                {
+                    TeacherID = userID,
+                    Category = t.Category,
+                    Specialization = t.Specialization
+                });
+                context.SaveChanges();
+            }
+            return userID;
+        }
+
+        public static void UpdateTeacher(TeacherInfo t)
+        {
+            UsersDAL.UpdateUser(t);
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                Teacher teacherToUpdate = context.Set<Teacher>().Find(t.TeacherID);
+                teacherToUpdate.Specialization = t.Specialization;
+                teacherToUpdate.Category = t.Category;
+                context.SaveChanges();
+            }
+        }
+
         public static DataTable GetTeacherGroups(int teacherID)
         {
             return Util.PopulateFromStoredProcedure("getTeacherGroups", new SqlParameter("@teacher_id", teacherID));

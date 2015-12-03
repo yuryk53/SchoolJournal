@@ -30,6 +30,34 @@ namespace SJournalEFDAL
             Password = u.Password;
             Phone = u.Phone;
         }
+
+        public UserInfo(int userID, string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
+                                          string email, string password, string phone)
+        {
+            UserID = userID;
+            FirstName = firstName;
+            LastName = lastName;
+            Patronymic = patronymic;
+            DoB = dateOfBirth;
+            Email = email;
+            Password = password;
+            Phone = phone;
+        }
+
+        public User GetUser()
+        {
+            return new User
+            {
+                UserID = UserID,
+                FirstName = FirstName,
+                LastName = LastName,
+                Patronymic = Patronymic,
+                DateOfBirth = DoB,
+                Email = Email,
+                Password = Password,
+                Phone = Phone
+            };
+        }
     }
 
     public sealed class StudentInfo : UserInfo
@@ -39,12 +67,34 @@ namespace SJournalEFDAL
         public readonly string Section;
         public readonly DateTime? DateOfJoin;
         public int StudentID { get { return base.UserID; } }
+        public string GradeName { get { return string.Format("{0}{1}", GradeNo, Section); } }
         public StudentInfo(Student s) : base(s.user)
         {
             GradeID = s.GradeID;
             GradeNo = s.grade.GradeNo;
             Section = s.grade.Section;
             DateOfJoin = s.DateOfJoin;
+        }
+        public StudentInfo(int userID, string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
+                           string email, string password, string phone, int gradeID, int gradeNo, string section,
+                           DateTime? dateOfJoin)
+            : base(userID, firstName, lastName, patronymic, dateOfBirth, email, password, phone)
+        {
+            GradeID = gradeID;
+            GradeNo = gradeNo;
+            Section = section;
+            DateOfJoin = dateOfJoin;
+        }
+
+        public StudentInfo(int userID, string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
+                           string email, string password, string phone, int gradeID, string gradeSection,
+                           DateTime? dateOfJoin)
+            : base(userID, firstName, lastName, patronymic, dateOfBirth, email, password, phone)
+        {
+            GradeID = gradeID;
+            GradeNo = int.Parse(gradeSection.Substring(0, gradeSection.Length - 1)); //gradeNo;
+            Section = gradeSection[gradeSection.Length-1]+"";
+            DateOfJoin = dateOfJoin;
         }
     }
 
@@ -59,6 +109,13 @@ namespace SJournalEFDAL
         {
             Specialization = t.Specialization;
             Category = t.Category;
+        }
+        public TeacherInfo(int userID, string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
+                                          string email, string password, string phone, string specialization, string category)
+            : base(userID, firstName, lastName, patronymic, dateOfBirth, email, password, phone)
+        {
+            this.Specialization = specialization;
+            this.Category = category;
         }
     }
 

@@ -30,6 +30,18 @@ namespace SJournalEFDAL
             }
         }
 
+        public static int AddNewUser(UserInfo u) //returns new UserID
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                User newUser = u.GetUser();
+                context.Users.Add(newUser);
+                context.SaveChanges();
+
+                return newUser.UserID;
+            }
+        }
+
         public static UserCategory GetUserCategory(int userID)
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
@@ -97,22 +109,21 @@ namespace SJournalEFDAL
             }
         }
 
-        public static void UpdateUser(int userID, string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
-                                          string email, string password, string phone)
+        public static void UpdateUser(UserInfo u)
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
-                User userToUpdate = (User)context.Set<User>().Find(userID);
+                User userToUpdate = (User)context.Set<User>().Find(u.UserID);
 
                 if(userToUpdate==null)
-                    throw new ArgumentException("UserID cannot be null!");
-                userToUpdate.FirstName = firstName;
-                userToUpdate.LastName = lastName;
-                userToUpdate.Patronymic = patronymic;
-                userToUpdate.DateOfBirth = dateOfBirth;
-                userToUpdate.Email = email;
-                userToUpdate.Password = password;
-                userToUpdate.Phone = phone;
+                    throw new ArgumentException("UserID is incorrect!");
+                userToUpdate.FirstName = u.FirstName;
+                userToUpdate.LastName = u.LastName;
+                userToUpdate.Patronymic = u.Patronymic;
+                userToUpdate.DateOfBirth = u.DoB;
+                userToUpdate.Email = u.Email;
+                userToUpdate.Password = u.Password;
+                userToUpdate.Phone = u.Phone;
 
                 context.SaveChanges();
             }

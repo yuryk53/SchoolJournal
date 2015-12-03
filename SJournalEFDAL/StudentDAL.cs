@@ -76,21 +76,20 @@ namespace SJournalEFDAL
             }
         }
 
-        public static void UpdateStudent(int studentID, string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
-                                          string email, string password, string phone, string gradeName, DateTime? dateOfJoin)
+        public static void UpdateStudent(StudentInfo si)
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
                 
-                Student s = context.Set<Student>().Find(studentID);
+                Student s = context.Set<Student>().Find(si.StudentID);
                 if (s == null)
                     throw new ArgumentNullException("StudentID to update cannot be null!");
 
-                UsersDAL.UpdateUser(studentID, firstName, lastName, patronymic, dateOfBirth, email, password, phone);
+                UsersDAL.UpdateUser(si);
 
-                s.DateOfJoin = dateOfJoin;
+                s.DateOfJoin = si.DateOfJoin;
                 //find grade ID
-                var gID = (from grade in context.Grades where (grade.GradeNo+grade.Section).Equals(gradeName) select grade.GradeID);
+                var gID = (from grade in context.Grades where (grade.GradeNo+grade.Section).Equals(si.GradeName) select grade.GradeID);
                 if (gID.Count() > 0)
                 {
                     s.GradeID = gID.First();

@@ -51,5 +51,18 @@ namespace SchoolJournalGUI
             wnd.Show();
             this.Hide();
         }
+
+        private void btnManageTeachers_Click(object sender, EventArgs e)
+        {
+            //manage teachers window
+            ManageTeachersWindow wnd = new ManageTeachersWindow();
+            wnd.FormClosed += ((o, s) =>
+            {
+                this.Show();
+            });
+            wnd.Owner = this;
+            wnd.Show();
+            this.Hide();
+        }
     }
 }
