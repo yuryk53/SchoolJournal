@@ -30,10 +30,14 @@ namespace SJournalEFDAL
             }
         }
 
-        public static int AddNewUser(UserInfo u) //returns new UserID
+        public static int AddNewUser(UserInfo u, System.Data.Common.DbTransaction transaction = null) //returns new UserID
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
+                if (transaction != null)
+                {
+                    context.Database.UseTransaction(transaction);
+                }
                 User newUser = u.GetUser();
                 context.Users.Add(newUser);
                 context.SaveChanges();

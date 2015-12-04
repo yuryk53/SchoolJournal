@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddStudentToGroupDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddStudentToGroupDialog.Designer.cs">
+      <DependentUpon>AddStudentToGroupDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,18 @@
     </Compile>
     <Compile Include="ManageStudentsWindow.Designer.cs">
       <DependentUpon>ManageStudentsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageTeacherGroupsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageTeacherGroupsDialog.Designer.cs">
+      <DependentUpon>ManageTeacherGroupsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageTeachersGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageTeachersGroups.Designer.cs">
+      <DependentUpon>ManageTeachersGroups.cs</DependentUpon>
     </Compile>
     <Compile Include="ManageTeachersWindow.cs">
       <SubType>Form</SubType>
@@ -140,6 +158,9 @@
     <Compile Include="TeacherStudyGroups.Designer.cs">
       <DependentUpon>TeacherStudyGroups.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddStudentToGroupDialog.resx">
+      <DependentUpon>AddStudentToGroupDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminMenu.resx">
       <DependentUpon>AdminMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +175,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageStudentsWindow.resx">
       <DependentUpon>ManageStudentsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageTeacherGroupsDialog.resx">
+      <DependentUpon>ManageTeacherGroupsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageTeachersGroups.resx">
+      <DependentUpon>ManageTeachersGroups.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageTeachersWindow.resx">
       <DependentUpon>ManageTeachersWindow.cs</DependentUpon>

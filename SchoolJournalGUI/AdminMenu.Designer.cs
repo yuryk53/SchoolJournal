@@ -35,6 +35,7 @@
             this.btnManageTeachers = new System.Windows.Forms.Button();
             this.btnShiftStudents = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnManageTeacherGroups = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -45,9 +46,10 @@
             this.flowLayoutPanel1.Controls.Add(this.btnManageStudents);
             this.flowLayoutPanel1.Controls.Add(this.btnManageTeachers);
             this.flowLayoutPanel1.Controls.Add(this.btnShiftStudents);
+            this.flowLayoutPanel1.Controls.Add(this.btnManageTeacherGroups);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 23);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(392, 184);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(392, 227);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // btnMyProfile
@@ -88,21 +90,32 @@
             this.btnShiftStudents.TabIndex = 3;
             this.btnShiftStudents.Text = "Shift all students to the next form";
             this.btnShiftStudents.UseVisualStyleBackColor = true;
+            this.btnShiftStudents.Click += new System.EventHandler(this.btnShiftStudents_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(440, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(434, 37);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(182, 195);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // btnManageTeacherGroups
+            // 
+            this.btnManageTeacherGroups.Location = new System.Drawing.Point(3, 183);
+            this.btnManageTeacherGroups.Name = "btnManageTeacherGroups";
+            this.btnManageTeacherGroups.Size = new System.Drawing.Size(381, 39);
+            this.btnManageTeacherGroups.TabIndex = 4;
+            this.btnManageTeacherGroups.Text = "Manage teacher study groups";
+            this.btnManageTeacherGroups.UseVisualStyleBackColor = true;
+            this.btnManageTeacherGroups.Click += new System.EventHandler(this.btnManageTeacherGroups_Click);
+            // 
             // AdminMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 221);
+            this.ClientSize = new System.Drawing.Size(650, 260);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "AdminMenu";
@@ -122,5 +135,6 @@
         private System.Windows.Forms.Button btnManageTeachers;
         private System.Windows.Forms.Button btnShiftStudents;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnManageTeacherGroups;
     }
 }

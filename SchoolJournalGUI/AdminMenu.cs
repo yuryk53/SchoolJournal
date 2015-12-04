@@ -64,5 +64,32 @@ namespace SchoolJournalGUI
             wnd.Show();
             this.Hide();
         }
+
+        private void btnShiftStudents_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("All students will be shifted to the next grade!\n" +
+                "Students, who are graduates will be deleted from the database! Are you sure?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                == DialogResult.Yes)
+            {
+                try
+                {
+                    StudentDAL.ShiftAllStudentsToNextGrade();
+                    MessageBox.Show("Transaction succeeded!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnManageTeacherGroups_Click(object sender, EventArgs e)
+        {
+            //open manage teacher groups window
+            //ManageTeacherGroupsDialog wnd = new ManageTeacherGroupsDialog();
+            //wnd.ShowDialog();
+            ManageTeachersGroups wnd = new ManageTeachersGroups();
+            wnd.Show();
+        }
     }
 }

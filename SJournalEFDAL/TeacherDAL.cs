@@ -24,18 +24,22 @@ namespace SJournalEFDAL
         /// <param name="t"></param>
         /// <returns>ID of newly added teacher.</returns>
         public static int AddNewTeacher(TeacherInfo t)
-        {
-            int userID = UsersDAL.AddNewUser(t);
-
+        {    
+            int userID;
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
-                context.Teachers.Add(new Teacher
+                using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
-                    TeacherID = userID,
-                    Category = t.Category,
-                    Specialization = t.Specialization
-                });
-                context.SaveChanges();
+                    userID = UsersDAL.AddNewUser(t, dbContextTransaction.UnderlyingTransaction);
+                    context.Teachers.Add(new Teacher
+                    {
+                        TeacherID = userID,
+                        Category = t.Category,
+                        Specialization = t.Specialization
+                    });
+                    context.SaveChanges();
+                    dbContextTransaction.Commit();
+                }
             }
             return userID;
         }

@@ -99,5 +99,71 @@ namespace SJournalEFDAL
             }
         }
 
+        public static void ShiftAllStudentsToNextGrade()
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                using (var dbContextTransaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (Student s in context.Students)
+                        {
+                            //if the current grade is the last one, the student is deleted!
+                            int nextGradeID = GetNextGradeID(s.GradeID);
+                            if (nextGradeID == -1) //delete student from school
+                            {
+                                UsersDAL.DeleteUser(s.StudentID);
+                            }
+                            else
+                            {
+                                s.GradeID = nextGradeID;
+                            }
+                        }
+                        foreach (Group g in context.Groups)
+                        {
+                            int nextGradeID = GetNextGradeID(g.GradeID);
+                            if (nextGradeID == -1) //delete student from school
+                            {
+                                context.Groups.Remove(g);
+                            }
+                            else
+                            {
+                                g.GradeID = nextGradeID;
+                            }
+                        }
+                        context.SaveChanges();
+                        dbContextTransaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContextTransaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        static int GetNextGradeID(int currentGradeID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                Grade currentGrade = (from grade in context.Grades where grade.GradeID == currentGradeID select grade).FirstOrDefault();
+                string section = currentGrade.Section;
+                //check if current grade is last one, if yes, return -1
+                int lastGradeNo = (from grade in context.Grades select grade.GradeNo).Max();
+                if (currentGrade.GradeNo == lastGradeNo)
+                    return -1;
+
+                int nextGradeID = (from grade in context.Grades where grade.GradeNo == currentGrade.GradeNo + 1
+                                                                      && (grade.Section==currentGrade.Section ||
+                                                                          grade.Section==null)
+                                   select grade.GradeID).FirstOrDefault();
+                if (nextGradeID != 0)
+                    return nextGradeID;
+                else throw new Exception("GetNextGradeID() failed!");
+
+            }
+        }
     }
 }
