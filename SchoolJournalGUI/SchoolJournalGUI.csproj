@@ -47,6 +47,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,6 +75,18 @@
     </Compile>
     <Compile Include="ChangePasswordWindow.Designer.cs">
       <DependentUpon>ChangePasswordWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildOverallProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildOverallProgress.Designer.cs">
+      <DependentUpon>ChildOverallProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildProgressWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildProgressWindow.Designer.cs">
+      <DependentUpon>ChildProgressWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="JournalViewWindow.cs">
       <SubType>Form</SubType>
@@ -123,6 +136,18 @@
     <Compile Include="NewLessonWindow.Designer.cs">
       <DependentUpon>NewLessonWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="ParentMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParentMenu.Designer.cs">
+      <DependentUpon>ParentMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParentStudentsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParentStudentsWindow.Designer.cs">
+      <DependentUpon>ParentStudentsWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProfileWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +192,12 @@
     <EmbeddedResource Include="ChangePasswordWindow.resx">
       <DependentUpon>ChangePasswordWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChildOverallProgress.resx">
+      <DependentUpon>ChildOverallProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildProgressWindow.resx">
+      <DependentUpon>ChildProgressWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="JournalViewWindow.resx">
       <DependentUpon>JournalViewWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +221,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewLessonWindow.resx">
       <DependentUpon>NewLessonWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParentMenu.resx">
+      <DependentUpon>ParentMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParentStudentsWindow.resx">
+      <DependentUpon>ParentStudentsWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProfileWindow.resx">
       <DependentUpon>ProfileWindow.cs</DependentUpon>
@@ -243,6 +280,9 @@
   <ItemGroup>
     <Content Include="AdminMenu.png" />
     <Content Include="DeleteRed.ico" />
+    <Content Include="no_marks_on_subject.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

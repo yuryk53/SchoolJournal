@@ -15,5 +15,18 @@ namespace SJournalEFDAL
                 return context.Subjects.ToList();
             }
         }
+
+        public static List<Subject> GetGradeSubjects(int gradeID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                var subjts = from subj in context.Subjects
+                             from lesson in context.Lessons
+                             where subj.SubjectID == lesson.SubjectID &&
+                                   lesson.GradeID == gradeID
+                             select subj;
+                return subjts.ToList();
+            }
+        }
     }
 }

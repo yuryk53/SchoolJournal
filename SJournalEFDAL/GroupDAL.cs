@@ -78,5 +78,14 @@ namespace SJournalEFDAL
                 context.SaveChanges();
             }
         }
+        public static void RemoveStudentFromGroup(int groupID, int studentID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM student_group WHERE group_id=@group_id AND student_id=@student_id",
+                    new SqlParameter("@group_id", groupID), new SqlParameter("@student_id", studentID));
+                context.SaveChanges();
+            }
+        }
     }
 }

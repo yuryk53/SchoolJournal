@@ -6424,6 +6424,8 @@ namespace SchoolJournalGUI {
             
             private global::System.Data.DataColumn columnFirst_Name;
             
+            private global::System.Data.DataColumn columnStudent_ID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public getGroupStudentsDataTable() {
@@ -6483,6 +6485,14 @@ namespace SchoolJournalGUI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Student_IDColumn {
+                get {
+                    return this.columnStudent_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6523,7 +6533,8 @@ namespace SchoolJournalGUI {
                 object[] columnValuesArray = new object[] {
                         Group_ID,
                         Last_Name,
-                        First_Name};
+                        First_Name,
+                        null};
                 rowgetGroupStudentsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowgetGroupStudentsRow);
                 return rowgetGroupStudentsRow;
@@ -6549,6 +6560,7 @@ namespace SchoolJournalGUI {
                 this.columnGroup_ID = base.Columns["Group ID"];
                 this.columnLast_Name = base.Columns["Last Name"];
                 this.columnFirst_Name = base.Columns["First Name"];
+                this.columnStudent_ID = base.Columns["Student ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6560,11 +6572,18 @@ namespace SchoolJournalGUI {
                 base.Columns.Add(this.columnLast_Name);
                 this.columnFirst_Name = new global::System.Data.DataColumn("First Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFirst_Name);
+                this.columnStudent_ID = new global::System.Data.DataColumn("Student ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStudent_ID);
                 this.columnGroup_ID.AllowDBNull = false;
                 this.columnLast_Name.AllowDBNull = false;
                 this.columnLast_Name.MaxLength = 45;
                 this.columnFirst_Name.AllowDBNull = false;
                 this.columnFirst_Name.MaxLength = 45;
+                this.columnStudent_ID.AutoIncrement = true;
+                this.columnStudent_ID.AutoIncrementSeed = -1;
+                this.columnStudent_ID.AutoIncrementStep = -1;
+                this.columnStudent_ID.AllowDBNull = false;
+                this.columnStudent_ID.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10241,6 +10260,17 @@ namespace SchoolJournalGUI {
                 }
                 set {
                     this[this.tablegetGroupStudents.First_NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Student_ID {
+                get {
+                    return ((int)(this[this.tablegetGroupStudents.Student_IDColumn]));
+                }
+                set {
+                    this[this.tablegetGroupStudents.Student_IDColumn] = value;
                 }
             }
         }
@@ -17086,6 +17116,7 @@ SELECT u_id, fname, lname, patronymic, dob, email, password, phone FROM [user] W
             tableMapping.ColumnMappings.Add("Group ID", "Group ID");
             tableMapping.ColumnMappings.Add("Last Name", "Last Name");
             tableMapping.ColumnMappings.Add("First Name", "First Name");
+            tableMapping.ColumnMappings.Add("Student ID", "Student ID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

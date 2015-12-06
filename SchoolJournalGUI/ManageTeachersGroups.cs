@@ -228,6 +228,33 @@ namespace SchoolJournalGUI
             dialog.ShowDialog();
         }
 
+        private void btnRemoveStudentFromGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int rowIndex = studentsDataGridView.SelectedCells[0].RowIndex;
+                int studentID = int.Parse(studentsDataGridView["Student_ID", rowIndex].EditedFormattedValue.ToString());
+                int groupID = int.Parse(studentsDataGridView["Group_ID", rowIndex].EditedFormattedValue.ToString());
+
+                if (MessageBox.Show(string.Format("Do you really want to delete student {0} {1} from group #{2}?",
+                    studentsDataGridView["Last_name", rowIndex].EditedFormattedValue.ToString(),
+                    studentsDataGridView["First_name", rowIndex].EditedFormattedValue.ToString(),
+                    groupID), "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    == System.Windows.Forms.DialogResult.Yes)
+                {
+                    GroupDAL.RemoveStudentFromGroup(groupID, studentID);
+                    studentsDataGridView.Rows.RemoveAt(rowIndex);
+
+                    MessageBox.Show("Student successfully removed from the group!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
         
     }
 }

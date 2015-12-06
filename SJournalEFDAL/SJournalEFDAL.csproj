@@ -65,6 +65,7 @@
     <Compile Include="getTeacherGroups_Result.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
+    <Compile Include="ParentDAL.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

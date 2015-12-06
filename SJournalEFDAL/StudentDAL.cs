@@ -10,6 +10,13 @@ using System.Data;
 using System.Data.Entity.Core.Objects;
 namespace SJournalEFDAL
 {
+    public class MarkInfo
+    {
+        public DateTime Date { get; set; }
+        public decimal MarkValue { get; set; }
+        public MarkInfo() { }
+    }
+
     public class StudentDAL
     {
         public static double GetAvgMark(int studentID)
@@ -163,6 +170,49 @@ namespace SJournalEFDAL
                     return nextGradeID;
                 else throw new Exception("GetNextGradeID() failed!");
 
+            }
+        }
+
+        public static int GetStudentGradeID(int studentID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                Student s = context.Set<Student>().Find(studentID);
+
+                if (s != null)
+                {
+                    return s.GradeID;
+                }
+                else throw new ArgumentOutOfRangeException("No such studentID=" + studentID); 
+            }
+        }
+
+        public static List<MarkInfo> GetStudentSubjectMarks(int studentID, int subjectID, 
+            DateTime fromDate)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                //var lessonsOnSubject = from lesson in context.Lessons
+                //                       where lesson.SubjectID==subjectID
+                //                       select lesson.LessonID;
+                //var marks = from lstud in context.lesson_student
+                //            where lstud.StudentID == studentID &&
+                //                  lessonsOnSubject.Contains(lstud.LessonID)
+                //            select lstud.marks.Value;
+                var date_marks = from lesson in context.Lessons
+                                 from lstud in context.lesson_student
+                                 where lesson.SubjectID == subjectID &&
+                                       lesson.LessonID == lstud.LessonID &&
+                                       lstud.StudentID == studentID &&
+                                       lstud.MarkID != null &&
+                                       lesson.Date >= fromDate
+                                 select new MarkInfo
+                                 {
+                                     Date = lesson.Date,
+                                     MarkValue = lstud.marks.Value
+                                 };
+
+                return date_marks.ToList();
             }
         }
     }

@@ -51,7 +51,14 @@ namespace SchoolJournalGUI
                     this.Hide();
                     break;
                 case UserCategory.PARENT: //open parent window
-                    MessageBox.Show("Parent");
+                    ParentMenu p_menu = new ParentMenu(user.UserID);
+                    p_menu.FormClosed += (o, s) =>
+                    {
+                        Application.Exit();
+                    };
+                    p_menu.Owner = this;
+                    p_menu.Show();
+                    this.Hide();
                     break;
                 case UserCategory.STUDENT: //open student window
                     MessageBox.Show("Student");
