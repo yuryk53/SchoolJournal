@@ -552,6 +552,11 @@
         <Function Name="getGroupStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="group_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="getStudentSubjectMarks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="student_id" Type="int" Mode="In" />
+          <Parameter Name="subject_id" Type="int" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="getTeacherGroups" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="teacher_id" Type="int" Mode="In" />
         </Function>
@@ -708,6 +713,11 @@
           <Parameter Name="teacher_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="studentsList" EntityType="schooljournalModel.studentsList" />
+          <FunctionImport Name="getStudentSubjectMarks" ReturnType="Collection(schooljournalModel.getStudentSubjectMarks_Result)">
+            <Parameter Name="student_id" Mode="In" Type="Int32" />
+            <Parameter Name="subject_id" Mode="In" Type="Int32" />
+            <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Admin">
           <Key>
@@ -1068,6 +1078,10 @@
           <Property Type="String" Name="password" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="Date_of_join" Precision="3" />
         </EntityType>
+        <ComplexType Name="getStudentSubjectMarks_Result">
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="Value" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1264,6 +1278,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getStudentSubjectMarks" FunctionName="schooljournalModel.Store.getStudentSubjectMarks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="schooljournalModel.getStudentSubjectMarks_Result">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

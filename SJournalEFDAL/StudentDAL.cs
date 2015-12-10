@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using System.Data;
 using System.Data.Entity.Core.Objects;
+using System.Data.SqlClient;
 namespace SJournalEFDAL
 {
     public class MarkInfo
@@ -190,30 +191,19 @@ namespace SJournalEFDAL
         public static List<MarkInfo> GetStudentSubjectMarks(int studentID, int subjectID, 
             DateTime fromDate)
         {
-            using (SchoolJournalEntities context = new SchoolJournalEntities())
-            {
-                //var lessonsOnSubject = from lesson in context.Lessons
-                //                       where lesson.SubjectID==subjectID
-                //                       select lesson.LessonID;
-                //var marks = from lstud in context.lesson_student
-                //            where lstud.StudentID == studentID &&
-                //                  lessonsOnSubject.Contains(lstud.LessonID)
-                //            select lstud.marks.Value;
-                var date_marks = from lesson in context.Lessons
-                                 from lstud in context.lesson_student
-                                 where lesson.SubjectID == subjectID &&
-                                       lesson.LessonID == lstud.LessonID &&
-                                       lstud.StudentID == studentID &&
-                                       lstud.MarkID != null &&
-                                       lesson.Date >= fromDate
-                                 select new MarkInfo
-                                 {
-                                     Date = lesson.Date,
-                                     MarkValue = lstud.marks.Value
-                                 };
-
-                return date_marks.ToList();
-            }
+            List<MarkInfo> resultList = Util.PopulateFromStoredProcedure<MarkInfo>("getStudentSubjectMarks", 
+                                                                                    dr=>{
+                                                                                        return new MarkInfo
+                                                                                        {
+                                                                                            Date = DateTime.Parse(dr["Date"].ToString()),
+                                                                                            MarkValue = decimal.Parse(dr["Value"].ToString())
+                                                                                        };
+                                                                                    },
+                                                                                    new SqlParameter("@student_id", studentID),
+                                                                                    new SqlParameter("@subject_id", subjectID),
+                                                                                    new SqlParameter("@fromDate", fromDate)
+                                                                                    );
+            return resultList;
         }
     }
 }

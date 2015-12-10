@@ -193,5 +193,22 @@ namespace SJournalEFDAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTeacherGroups_Result>("getTeacherGroups", teacher_idParameter);
         }
+    
+        public virtual ObjectResult<getStudentSubjectMarks_Result> getStudentSubjectMarks(Nullable<int> student_id, Nullable<int> subject_id, Nullable<System.DateTime> fromDate)
+        {
+            var student_idParameter = student_id.HasValue ?
+                new ObjectParameter("student_id", student_id) :
+                new ObjectParameter("student_id", typeof(int));
+    
+            var subject_idParameter = subject_id.HasValue ?
+                new ObjectParameter("subject_id", subject_id) :
+                new ObjectParameter("subject_id", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("fromDate", fromDate) :
+                new ObjectParameter("fromDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getStudentSubjectMarks_Result>("getStudentSubjectMarks", student_idParameter, subject_idParameter, fromDateParameter);
+        }
     }
 }

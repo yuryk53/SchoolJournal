@@ -82,6 +82,7 @@ namespace SchoolJournalGUI
             {
                 // Add series.
                 Series series = this.chartProgress.Series.Add(seriesList[i]);
+
                 series.XValueType = ChartValueType.Date;
                 series.YValueType = ChartValueType.Double;
 

@@ -99,7 +99,7 @@ namespace SJournalEFDAL
                                    teacher.TeacherID == teacherID &&
                                    lesson.GradeID == grade.GradeID
                              select grade;
-                return grades.ToList();
+                return grades.Distinct().ToList();
             }
         }
         public static List<Subject> GetTeacherSubjects(int teacherID)

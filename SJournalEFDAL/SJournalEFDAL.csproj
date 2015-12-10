@@ -62,6 +62,9 @@
     <Compile Include="getGroupStudents_Result.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>
+    <Compile Include="getStudentSubjectMarks_Result.cs">
+      <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
+    </Compile>
     <Compile Include="getTeacherGroups_Result.cs">
       <DependentUpon>SJournalDAL_EF.tt</DependentUpon>
     </Compile>

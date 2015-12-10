@@ -34,5 +34,16 @@ namespace SJournalEFDAL
 
             return dt;
         }
+        public static List<T> PopulateFromStoredProcedure<T>(string procedureName, Func<DataRow, T> rowMapper, params SqlParameter[] parameters)  where T:class
+        {
+            DataTable resultSet = PopulateFromStoredProcedure(procedureName, parameters);
+            List<T> resultList = new List<T>();
+            foreach (DataRow dr in resultSet.Rows)
+            {
+                T item = rowMapper(dr);
+                resultList.Add(item);
+            }
+            return resultList;
+        }
     }
 }
