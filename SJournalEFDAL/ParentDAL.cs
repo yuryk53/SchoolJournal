@@ -29,5 +29,19 @@ namespace SJournalEFDAL
         {
             return Util.PopulateFromStoredProcedure("getParentStudents", new SqlParameter("@parent_id", parentID));
         }
+
+        public static List<string> GetParentNames()
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                var parents = from parent in context.parentsList
+                              select    parent.Parent_ID  + " " +
+                                        parent.Last_Name  + " " +
+                                        parent.First_Name + " " +
+                                        parent.Patronymic;
+                return parents.ToList();
+            }
+        }
+
     }
 }

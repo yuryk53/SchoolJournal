@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewParentWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewParentWindow.Designer.cs">
+      <DependentUpon>AddNewParentWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddStudentToGroupDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,12 @@
     </Compile>
     <Compile Include="ChildProgressWindow.Designer.cs">
       <DependentUpon>ChildProgressWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DateIntervalDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DateIntervalDialog.Designer.cs">
+      <DependentUpon>DateIntervalDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="JournalViewWindow.cs">
       <SubType>Form</SubType>
@@ -165,11 +177,35 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>schooljournalDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="StudentHomeTasks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentHomeTasks.Designer.cs">
+      <DependentUpon>StudentHomeTasks.cs</DependentUpon>
+    </Compile>
     <Compile Include="StudentListWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StudentListWindow.Designer.cs">
       <DependentUpon>StudentListWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentMenu.Designer.cs">
+      <DependentUpon>StudentMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentOverallProgressWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentOverallProgressWindow.Designer.cs">
+      <DependentUpon>StudentOverallProgressWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentProgressOnSubjWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentProgressOnSubjWindow.Designer.cs">
+      <DependentUpon>StudentProgressOnSubjWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="TeacherMenu.cs">
       <SubType>Form</SubType>
@@ -183,6 +219,9 @@
     <Compile Include="TeacherStudyGroups.Designer.cs">
       <DependentUpon>TeacherStudyGroups.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddNewParentWindow.resx">
+      <DependentUpon>AddNewParentWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddStudentToGroupDialog.resx">
       <DependentUpon>AddStudentToGroupDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChildProgressWindow.resx">
       <DependentUpon>ChildProgressWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DateIntervalDialog.resx">
+      <DependentUpon>DateIntervalDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JournalViewWindow.resx">
       <DependentUpon>JournalViewWindow.cs</DependentUpon>
@@ -240,8 +282,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="StudentHomeTasks.resx">
+      <DependentUpon>StudentHomeTasks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StudentListWindow.resx">
       <DependentUpon>StudentListWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentMenu.resx">
+      <DependentUpon>StudentMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentOverallProgressWindow.resx">
+      <DependentUpon>StudentOverallProgressWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentProgressOnSubjWindow.resx">
+      <DependentUpon>StudentProgressOnSubjWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TeacherMenu.resx">
       <DependentUpon>TeacherMenu.cs</DependentUpon>

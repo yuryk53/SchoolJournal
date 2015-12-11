@@ -17,6 +17,17 @@ namespace SJournalEFDAL
         public decimal MarkValue { get; set; }
         public MarkInfo() { }
     }
+    public class HomeTask
+    {
+        public string Subject {get;set;}
+        public string Task {get;set;}
+        public DateTime Date { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}", Subject, Task);
+        }
+    }
 
     public class StudentDAL
     {
@@ -204,6 +215,69 @@ namespace SJournalEFDAL
                                                                                     new SqlParameter("@fromDate", fromDate)
                                                                                     );
             return resultList;
+        }
+
+        public static StudentInfo GetStudentInfo(int studentID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                Student p = context.Set<Student>().Find(studentID);
+
+                if (p != null)
+                {
+                    StudentInfo info = new StudentInfo(p);
+                    return info;
+                }
+                else throw new ArgumentOutOfRangeException("Student ID was not found in the DB!");
+            }
+        }
+
+        public static List<HomeTask> GetStudentHomeTaskByDate(int studentID, DateTime intervalStart, DateTime intervalEnd)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                var tasks = (from lesson in context.Lessons
+                             from lstud in context.lesson_student
+                             where lesson.LessonID == lstud.LessonID &&
+                                   lstud.StudentID == studentID &&
+                                   lesson.Date <= intervalEnd && lesson.Date >= intervalStart
+                             orderby lesson.Date
+                             select new HomeTask
+                             {
+                                 Subject = lesson.subject.Title,
+                                 Task = lesson.HomeTask,
+                                 Date = lesson.Date
+                             }).Distinct();
+
+                return tasks.ToList();            
+            }
+        }
+
+        public static DataTable GetStudentParents(int studentID)
+        {
+            return Util.PopulateFromStoredProcedure("getStudentParents", new SqlParameter("@student_id", studentID));
+        }
+
+        public static void AddParent(int studentID, int parentID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                context.Database.ExecuteSqlCommand("INSERT INTO parent_student VALUES (@student_id, @parent_id)",
+                                                                new SqlParameter("@student_id", studentID),
+                                                                new SqlParameter("@parent_id", parentID));
+                context.SaveChanges();
+            }
+        }
+
+        public static void RemoveParent(int studentID, int parentID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM parent_student WHERE student_id=@studentID AND parent_id=@parentID",
+                    new SqlParameter("@studentID", studentID),
+                    new SqlParameter("@parentID", parentID));
+                context.SaveChanges();
+            }
         }
     }
 }

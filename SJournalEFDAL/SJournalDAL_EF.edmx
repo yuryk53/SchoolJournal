@@ -34,6 +34,18 @@
       [attendanceJournal].[TeacherID] AS [TeacherID]
       FROM [dbo].[attendanceJournal] AS [attendanceJournal]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="parentsList" EntityType="schooljournalModel.Store.parentsList" store:Type="Views" store:Schema="dbo" store:Name="parentsList">
+            <DefiningQuery>SELECT 
+      [parentsList].[Parent ID] AS [Parent ID], 
+      [parentsList].[Last Name] AS [Last Name], 
+      [parentsList].[First Name] AS [First Name], 
+      [parentsList].[Patronymic] AS [Patronymic], 
+      [parentsList].[Email] AS [Email], 
+      [parentsList].[Password] AS [Password], 
+      [parentsList].[Phone] AS [Phone], 
+      [parentsList].[Job] AS [Job]
+      FROM [dbo].[parentsList] AS [parentsList]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="studentsList" EntityType="schooljournalModel.Store.studentsList" store:Type="Views" store:Schema="dbo" store:Name="studentsList">
             <DefiningQuery>SELECT 
       [studentsList].[Student ID] AS [Student ID], 
@@ -268,6 +280,27 @@
           <Property Name="Section" Type="char" MaxLength="1" />
           <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="TeacherID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'schooljournal.dbo.parentsList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="parentsList">
+          <Key>
+            <PropertyRef Name="Parent ID" />
+            <PropertyRef Name="Last Name" />
+            <PropertyRef Name="First Name" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Parent ID" Type="int" Nullable="false" />
+          <Property Name="Last Name" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="First Name" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Patronymic" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Phone" Type="varchar" MaxLength="45" />
+          <Property Name="Job" Type="varchar" MaxLength="45" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'schooljournal.dbo.studentsList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -718,6 +751,7 @@
             <Parameter Name="subject_id" Mode="In" Type="Int32" />
             <Parameter Name="fromDate" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="parentsList" EntityType="schooljournalModel.parentsList" />
         </EntityContainer>
         <EntityType Name="Admin">
           <Key>
@@ -1082,6 +1116,24 @@
           <Property Type="DateTime" Name="Date" Nullable="false" Precision="23" />
           <Property Type="Decimal" Name="Value" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
+        <EntityType Name="parentsList">
+          <Key>
+            <PropertyRef Name="Parent_ID" />
+            <PropertyRef Name="Last_Name" />
+            <PropertyRef Name="First_Name" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Type="Int32" Name="Parent_ID" Nullable="false" />
+          <Property Type="String" Name="Last_Name" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Patronymic" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Job" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1286,6 +1338,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="parentsList">
+            <EntityTypeMapping TypeName="schooljournalModel.parentsList">
+              <MappingFragment StoreEntitySet="parentsList">
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="First_Name" ColumnName="First Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+                <ScalarProperty Name="Parent_ID" ColumnName="Parent ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -40,6 +40,7 @@ namespace SJournalEFDAL
         public DbSet<Group> Groups { get; set; }
         public DbSet<lesson_student> lesson_student { get; set; }
         public DbSet<studentsList> studentsList { get; set; }
+        public DbSet<parentsList> parentsList { get; set; }
     
         public virtual int getAvgMark(Nullable<int> stud_id, ObjectParameter avg_mark)
         {

@@ -61,7 +61,14 @@ namespace SchoolJournalGUI
                     this.Hide();
                     break;
                 case UserCategory.STUDENT: //open student window
-                    MessageBox.Show("Student");
+                    StudentMenu s_menu = new StudentMenu(user.UserID);
+                    s_menu.FormClosed += (o, s) =>
+                    {
+                        Application.Exit();
+                    };
+                    s_menu.Owner = this;
+                    s_menu.Show();
+                    this.Hide();
                     break;
                 case UserCategory.TEACHER: //open teacher window
                     TeacherMenu t_menu = new TeacherMenu(user.UserID);

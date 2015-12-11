@@ -119,8 +119,6 @@ namespace SchoolJournalGUI
                                 
         }
 
-      
-
         private void toolStripDeleteRecord_Click(object sender, EventArgs e)
         {
             //delete student with such student id
@@ -145,6 +143,35 @@ namespace SchoolJournalGUI
                 }
                 else return;
             }
+        }
+
+        private void dataGridStudents_SelectionChanged(object sender, EventArgs e)
+        {
+            int selectedRow = dataGridStudents.CurrentCell.RowIndex;
+            int studentID = int.Parse(
+                dataGridStudents.Rows[selectedRow].Cells[0].Value.ToString());
+            //update parents data grid
+            parentsListDataGridView.DataSource = StudentDAL.GetStudentParents(studentID);
+        }
+
+        private void btnAddParent_Click(object sender, EventArgs e)
+        {
+            int selectedRow = dataGridStudents.CurrentCell.RowIndex;
+            int studentID = int.Parse(
+                dataGridStudents.Rows[selectedRow].Cells[0].Value.ToString());
+
+            AddNewParentWindow wnd = new AddNewParentWindow(studentID);
+            wnd.ShowDialog();
+        }
+
+        private void btnDeleteStudentParent_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnRemoveParent_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
 

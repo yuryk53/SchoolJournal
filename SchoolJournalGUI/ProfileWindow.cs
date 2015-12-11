@@ -43,6 +43,7 @@ namespace SchoolJournalGUI
             this.add2Title = add2Title;
             this.add2Value = add2Value;
             info = generalInfo;
+            lblStatus.Text = info.GetType().Name.Replace("Info", string.Empty);
         }
 
         private void ProfileWindow_Load(object sender, EventArgs e)
@@ -53,7 +54,6 @@ namespace SchoolJournalGUI
         private void UpdateFields()
         {
             lblUserID.Text = info.UserID.ToString();
-            lblStatus.Text = info.GetType().Name.Replace("Info", string.Empty);
             lblFirstName.Text = info.FirstName.ToString();
             txtLastName.Text = info.LastName.ToString();
             lblPatronymic.Text = info.Patronymic;
