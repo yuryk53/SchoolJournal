@@ -41,6 +41,11 @@ namespace SchoolJournalGUI
             bs.DataSource = dataGridStudents.DataSource;
             bindingNavigator1.BindingSource = bs;
             dataGridStudents.DataSource = bs;
+
+            var bs2 = new BindingSource();
+            bs2.DataSource = parentsListDataGridView.DataSource;
+            bindingNavigator2.BindingSource = bs2;
+            parentsListDataGridView.DataSource = bs2;
         }
 
         private void toolStripButtonSave_Click(object sender, EventArgs e)
@@ -147,11 +152,14 @@ namespace SchoolJournalGUI
 
         private void dataGridStudents_SelectionChanged(object sender, EventArgs e)
         {
-            int selectedRow = dataGridStudents.CurrentCell.RowIndex;
-            int studentID = int.Parse(
-                dataGridStudents.Rows[selectedRow].Cells[0].Value.ToString());
-            //update parents data grid
-            parentsListDataGridView.DataSource = StudentDAL.GetStudentParents(studentID);
+            if (!dataGridStudents.CurrentRow.IsNewRow)
+            {
+                int selectedRow = dataGridStudents.CurrentCell.RowIndex;
+                int studentID = int.Parse(
+                    dataGridStudents.Rows[selectedRow].Cells[0].Value.ToString());
+                //update parents data grid
+                parentsListDataGridView.DataSource = StudentDAL.GetStudentParents(studentID);
+            }
         }
 
         private void btnAddParent_Click(object sender, EventArgs e)
@@ -161,17 +169,60 @@ namespace SchoolJournalGUI
                 dataGridStudents.Rows[selectedRow].Cells[0].Value.ToString());
 
             AddNewParentWindow wnd = new AddNewParentWindow(studentID);
+            wnd.FormClosed += (o, s) =>
+                {
+                    parentsListDataGridView.DataSource = StudentDAL.GetStudentParents(studentID);
+                };
             wnd.ShowDialog();
         }
 
+        //delete parent from parent_student
         private void btnDeleteStudentParent_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                int parentID = int.Parse(
+                    parentsListDataGridView.Rows[parentsListDataGridView.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
+                int studentID = int.Parse(
+                    dataGridStudents.Rows[dataGridStudents.CurrentCell.RowIndex].Cells[0].Value.ToString());
+
+                if (MessageBox.Show(string.Format("Do you really want to remove parent with ID={0} from student with ID={1}", parentID, studentID),
+                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    StudentDAL.RemoveParent(studentID, parentID);
+
+                    MessageBox.Show("Operation successfully completed!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    parentsListDataGridView.Rows.RemoveAt(parentsListDataGridView.SelectedCells[0].RowIndex);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        //delete parent from DB
         private void btnRemoveParent_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                int parentID = int.Parse(
+                    parentsListDataGridView.Rows[parentsListDataGridView.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
+
+                if (MessageBox.Show(string.Format("Do you really want to remove parent with ID={0}", parentID),
+                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    //ParentDAL.DeleteParent(parentID); //Exception
+                    
+                    UsersDAL.DeleteUser(parentID);
+                    MessageBox.Show("Operation successfully completed!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    parentsListDataGridView.Rows.RemoveAt(parentsListDataGridView.SelectedCells[0].RowIndex);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 

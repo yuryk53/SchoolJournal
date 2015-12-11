@@ -40,6 +40,34 @@ namespace SchoolJournalGUI
 
         private void btnAddNewParent_Click(object sender, EventArgs e)
         {
+            try
+            {
+                User basicUserInfo = new User
+                {
+                    LastName = txtLastName.Text,
+                    FirstName = txtFirstName.Text,
+                    Patronymic = txtPatronymic.Text,
+                    DateOfBirth = dateTimePickerBirth.Value.Year == 9998 ? null : new DateTime?(dateTimePickerBirth.Value),
+                    Email = txtEmail.Text,
+                    Password = txtPassword.Text,
+                    Phone = txtPhone.Text
+                };
+
+                Parent p = new Parent
+                {
+                    user = basicUserInfo,
+                    Job = txtJob.Text
+                };
+
+                ParentDAL.AddNewParent(p);
+                StudentDAL.AddParent(this.StudentID, p.ParentID);
+                MessageBox.Show("Parent successfully added!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 

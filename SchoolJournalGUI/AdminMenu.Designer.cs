@@ -34,8 +34,8 @@
             this.btnManageStudents = new System.Windows.Forms.Button();
             this.btnManageTeachers = new System.Windows.Forms.Button();
             this.btnShiftStudents = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnManageTeacherGroups = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +68,7 @@
             this.btnManageStudents.Name = "btnManageStudents";
             this.btnManageStudents.Size = new System.Drawing.Size(381, 39);
             this.btnManageStudents.TabIndex = 1;
-            this.btnManageStudents.Text = "Manage students";
+            this.btnManageStudents.Text = "Manage students / parents";
             this.btnManageStudents.UseVisualStyleBackColor = true;
             this.btnManageStudents.Click += new System.EventHandler(this.btnManageStudents_Click);
             // 
@@ -92,15 +92,6 @@
             this.btnShiftStudents.UseVisualStyleBackColor = true;
             this.btnShiftStudents.Click += new System.EventHandler(this.btnShiftStudents_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(434, 37);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(182, 195);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnManageTeacherGroups
             // 
             this.btnManageTeacherGroups.Location = new System.Drawing.Point(3, 183);
@@ -110,6 +101,15 @@
             this.btnManageTeacherGroups.Text = "Manage teacher study groups";
             this.btnManageTeacherGroups.UseVisualStyleBackColor = true;
             this.btnManageTeacherGroups.Click += new System.EventHandler(this.btnManageTeacherGroups_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(434, 37);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(182, 195);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // AdminMenu
             // 

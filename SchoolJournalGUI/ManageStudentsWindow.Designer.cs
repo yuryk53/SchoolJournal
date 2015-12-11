@@ -309,6 +309,7 @@
             this.parentsListDataGridView.DataSource = this.parentsListBindingSource;
             this.parentsListDataGridView.Location = new System.Drawing.Point(0, 341);
             this.parentsListDataGridView.Name = "parentsListDataGridView";
+            this.parentsListDataGridView.ReadOnly = true;
             this.parentsListDataGridView.Size = new System.Drawing.Size(878, 116);
             this.parentsListDataGridView.TabIndex = 2;
             // 
@@ -493,7 +494,7 @@
             this.bindingNavigator2.MovePreviousItem = this.bindingNavigatorMovePreviousItem1;
             this.bindingNavigator2.Name = "bindingNavigator2";
             this.bindingNavigator2.PositionItem = this.bindingNavigatorPositionItem1;
-            this.bindingNavigator2.Size = new System.Drawing.Size(665, 25);
+            this.bindingNavigator2.Size = new System.Drawing.Size(634, 25);
             this.bindingNavigator2.TabIndex = 3;
             this.bindingNavigator2.Text = "bindingNavigator2";
             // 

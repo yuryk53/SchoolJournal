@@ -43,5 +43,26 @@ namespace SJournalEFDAL
             }
         }
 
+        public static void DeleteParent(int parentID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                Parent parentToDelete = context.Set<Parent>().Find(parentID);
+
+                context.Parents.Remove(parentToDelete);
+                context.SaveChanges();
+            }
+        }
+
+        public static int AddNewParent(Parent newParent)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                context.Parents.Add(newParent);
+                context.SaveChanges();
+                return newParent.ParentID;
+            }
+        }
+
     }
 }
