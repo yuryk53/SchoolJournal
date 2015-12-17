@@ -29,7 +29,10 @@ namespace SchoolJournalGUI
             string email = this.txtEmail.Text;
             string password = this.txtPassword.Text;
 
+            WaitWindow wait = new WaitWindow();
+            wait.Show();
             User user = UsersDAL.GetUserByCredentials(email, password);
+            wait.Close();
 
             if (user == null)
             {
@@ -87,10 +90,12 @@ namespace SchoolJournalGUI
             }
         }
 
-        private void txtPassword_KeyUp(object sender, KeyEventArgs e)
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+
                 btnSubmit.PerformClick();
                 e.Handled = true;
             }

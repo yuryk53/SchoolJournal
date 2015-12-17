@@ -35,9 +35,11 @@ namespace SchoolJournalGUI
                 }
             }
         }
-        public ManageTeachersGroups()
+        bool HasDeleteRights { get; set; }
+        public ManageTeachersGroups(bool hasDeleteRights)
         {
             InitializeComponent();
+            this.HasDeleteRights = hasDeleteRights;
         }
 
         private void ManageTeachersGroups_Load(object sender, EventArgs e)
@@ -50,6 +52,11 @@ namespace SchoolJournalGUI
             this.teachers_groupsTableAdapter.Fill(this.schooljournalDataSet.teachers_groups);
             GroupsDataGridView.SelectionChanged += GroupsDataGridView_SelectionChanged;
             GroupsDataGridView.Rows[0].Selected = true;
+
+            if (!HasDeleteRights) //disable all delete buttons
+            {
+                btnRemoveStudentFromGroup.Enabled = false;
+            }
         }
 
         void GroupsDataGridView_SelectionChanged(object sender, EventArgs e)

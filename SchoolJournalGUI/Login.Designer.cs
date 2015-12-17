@@ -67,10 +67,10 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(161, 143);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.PasswordChar = '●';
             this.txtPassword.Size = new System.Drawing.Size(130, 20);
             this.txtPassword.TabIndex = 3;
-            this.txtPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyUp);
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // pictureBox1
             // 

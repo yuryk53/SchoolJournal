@@ -17,9 +17,11 @@ namespace SchoolJournalGUI
 {
     public partial class ManageStudentsWindow : Form
     {
-        public ManageStudentsWindow()
+        bool HasDeleteRights { get; set; }
+        public ManageStudentsWindow(bool hasDeleteRights)
         {
             InitializeComponent();
+            this.HasDeleteRights = hasDeleteRights;
         }
 
         private void ManageStudentsWindow_Load(object sender, EventArgs e)
@@ -30,6 +32,12 @@ namespace SchoolJournalGUI
             this.studentsListTableAdapter.Fill(this.schooljournalDataSet.studentsList);
 
 
+            if (!HasDeleteRights)
+            {
+                toolStripDeleteRecord.Enabled = false;
+                btnDeleteStudentParent.Enabled = false;
+                btnRemoveParent.Enabled = false;
+            }
             //using (SchoolJournalEntities context = new SchoolJournalEntities())
             //{
             //    context.studentsList.Load();
@@ -55,7 +63,7 @@ namespace SchoolJournalGUI
                 var IDs = from user in context.Users select user.UserID;
                 for (int i = 0; i < dataGridStudents.Rows.Count-1; i++)
                 {
-                    if (!IDs.Contains(int.Parse(dataGridStudents["StudentID", i].Value.ToString())))
+                    if (!IDs.Contains(int.Parse(dataGridStudents["_StudentID", i].Value.ToString())))
                     {
                         try
                         {
@@ -70,21 +78,21 @@ namespace SchoolJournalGUI
                     {
                         DateTime dateOfJoin;
                         DateTime? parsedDateOfJoin = null;
-                        bool success = DateTime.TryParse(dataGridStudents["Date_of_join", i].Value.ToString(), out dateOfJoin);
+                        bool success = DateTime.TryParse(dataGridStudents["_Date_of_join", i].Value.ToString(), out dateOfJoin);
                         if (success)
                             parsedDateOfJoin = dateOfJoin;
                         //check all fields and save
                         StudentDAL.UpdateStudent(new StudentInfo(
-                                int.Parse(dataGridStudents["StudentID", i].Value.ToString()),
-                                dataGridStudents["First_name", i].Value.ToString(),
-                                dataGridStudents["Last_name", i].Value.ToString(),
-                                dataGridStudents["Patronymic", i].Value.ToString(),
+                                int.Parse(dataGridStudents["_StudentID", i].Value.ToString()),
+                                dataGridStudents["_First_name", i].Value.ToString(),
+                                dataGridStudents["_Last_name", i].Value.ToString(),
+                                dataGridStudents["_Patronymic", i].Value.ToString(),
                                 null,
-                                dataGridStudents["Email", i].Value.ToString(),
-                                dataGridStudents["Password", i].Value.ToString(),
+                                dataGridStudents["_Email", i].Value.ToString(),
+                                dataGridStudents["_Password", i].Value.ToString(),
                                 null,
                                 0, //заглушка для gradeID
-                                dataGridStudents["Grade", i].EditedFormattedValue.ToString(),
+                                dataGridStudents["_Grade", i].EditedFormattedValue.ToString(),
                                 parsedDateOfJoin));
                     }
                 }
@@ -93,15 +101,15 @@ namespace SchoolJournalGUI
 
         private void AddNewStudent(int rowNumber)
         {
-           dataGridStudents["StudentID", rowNumber].Value =
-               StudentDAL.AddNewStudent(dataGridStudents["First_name", rowNumber].Value.ToString(),
-                                dataGridStudents["Last_name", rowNumber].Value.ToString(),
-                                dataGridStudents["Patronymic", rowNumber].Value.ToString(),
+           dataGridStudents["_StudentID", rowNumber].Value =
+               StudentDAL.AddNewStudent(dataGridStudents["_First_name", rowNumber].Value.ToString(),
+                                dataGridStudents["_Last_name", rowNumber].Value.ToString(),
+                                dataGridStudents["_Patronymic", rowNumber].Value.ToString(),
                                 null,
-                                dataGridStudents["Email", rowNumber].Value.ToString(),
-                                dataGridStudents["Password", rowNumber].Value.ToString(),
+                                dataGridStudents["_Email", rowNumber].Value.ToString(),
+                                dataGridStudents["_Password", rowNumber].Value.ToString(),
                                 null,
-                                dataGridStudents["Grade", rowNumber].EditedFormattedValue.ToString()
+                                dataGridStudents["_Grade", rowNumber].EditedFormattedValue.ToString()
                                 );
         }
 
@@ -114,12 +122,12 @@ namespace SchoolJournalGUI
                 try
                 {
                     lastID = Math.Max(
-                        int.Parse(dataGridStudents["StudentID", dataGridStudents.Rows.Count - 3].Value.ToString()),
+                        int.Parse(dataGridStudents["_StudentID", dataGridStudents.Rows.Count - 3].Value.ToString()),
                         (int)(from u in context.Users select u.UserID).Max());
                 }
                 catch 
                 { }
-                dataGridStudents["StudentID", rowIndex].Value = lastID + 1;
+                dataGridStudents["_StudentID", rowIndex].Value = lastID + 1;
             }
                                 
         }
@@ -139,8 +147,8 @@ namespace SchoolJournalGUI
                 if (
                     MessageBox.Show(
                     string.Format("Do you really want to delete student {0} {1}?",
-                    dataGridStudents["Last_name", selectedRow].Value.ToString(),
-                    dataGridStudents["First_name", selectedRow].Value.ToString()), "Warning",
+                    dataGridStudents["_Last_name", selectedRow].Value.ToString(),
+                    dataGridStudents["_First_name", selectedRow].Value.ToString()), "Warning",
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
                     UsersDAL.DeleteUser(studentID);
@@ -159,6 +167,7 @@ namespace SchoolJournalGUI
                     dataGridStudents.Rows[selectedRow].Cells[0].Value.ToString());
                 //update parents data grid
                 parentsListDataGridView.DataSource = StudentDAL.GetStudentParents(studentID);
+               dataGridStudents.Rows[dataGridStudents.CurrentRow.Index].Cells["_Grade"].ReadOnly = false;
             }
         }
 

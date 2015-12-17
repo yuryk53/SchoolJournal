@@ -42,13 +42,12 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripDeleteRecord = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.gradeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.sectionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gradeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridStudents = new System.Windows.Forms.DataGridView();
-            this.Date_of_join = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.parentsListDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,45 +59,46 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.parentsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.schooljournalDataSet = new SchoolJournalGUI.schooljournalDataSet();
-            this.StudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Last_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.First_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Patronymic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Grade = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.getDistinctGradesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.studentsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.studentsListTableAdapter = new SchoolJournalGUI.schooljournalDataSetTableAdapters.studentsListTableAdapter();
-            this.tableAdapterManager = new SchoolJournalGUI.schooljournalDataSetTableAdapters.TableAdapterManager();
-            this.getDistinctGradesTableAdapter = new SchoolJournalGUI.schooljournalDataSetTableAdapters.getDistinctGradesTableAdapter();
-            this.parentsListTableAdapter = new SchoolJournalGUI.schooljournalDataSetTableAdapters.parentsListTableAdapter();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigator2 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorCountItem1 = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem1 = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem1 = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem1 = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem1 = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem1 = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem1 = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAddParent = new System.Windows.Forms.ToolStripButton();
-            this.btnDeleteStudentParent = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnRemoveParent = new System.Windows.Forms.ToolStripButton();
+            this.btnDeleteStudentParent = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnRemoveParent = new System.Windows.Forms.ToolStripButton();
+            this.studentsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.getDistinctGradesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tableAdapterManager = new SchoolJournalGUI.schooljournalDataSetTableAdapters.TableAdapterManager();
+            this.getDistinctGradesTableAdapter = new SchoolJournalGUI.schooljournalDataSetTableAdapters.getDistinctGradesTableAdapter();
+            this.parentsListTableAdapter = new SchoolJournalGUI.schooljournalDataSetTableAdapters.parentsListTableAdapter();
+            this.studentsListTableAdapter = new SchoolJournalGUI.schooljournalDataSetTableAdapters.studentsListTableAdapter();
+            this.dataGridStudents = new System.Windows.Forms.DataGridView();
+            this._StudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._Last_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._First_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._Patronymic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._Grade = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this._Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._Date_of_join = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.parentsListDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.parentsListBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schooljournalDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getDistinctGradesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentsListBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator2)).BeginInit();
             this.bindingNavigator2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsListBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.getDistinctGradesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridStudents)).BeginInit();
             this.SuspendLayout();
             // 
             // bindingNavigator1
@@ -126,7 +126,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(883, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(958, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -219,6 +219,11 @@
             this.toolStripDeleteRecord.ToolTipText = "Delete record";
             this.toolStripDeleteRecord.Click += new System.EventHandler(this.toolStripDeleteRecord_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // gradeDataGridViewTextBoxColumn
             // 
             this.gradeDataGridViewTextBoxColumn.DataPropertyName = "Grade ID";
@@ -256,39 +261,6 @@
             this.gradeIDDataGridViewTextBoxColumn.Name = "gradeIDDataGridViewTextBoxColumn";
             this.gradeIDDataGridViewTextBoxColumn.Width = 93;
             // 
-            // dataGridStudents
-            // 
-            this.dataGridStudents.AllowUserToDeleteRows = false;
-            this.dataGridStudents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridStudents.AutoGenerateColumns = false;
-            this.dataGridStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.StudentID,
-            this.Date_of_join,
-            this.Last_name,
-            this.First_name,
-            this.Patronymic,
-            this.Grade,
-            this.Email,
-            this.Password});
-            this.dataGridStudents.DataSource = this.studentsListBindingSource;
-            this.dataGridStudents.Location = new System.Drawing.Point(0, 28);
-            this.dataGridStudents.Name = "dataGridStudents";
-            this.dataGridStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridStudents.Size = new System.Drawing.Size(878, 278);
-            this.dataGridStudents.TabIndex = 1;
-            this.dataGridStudents.SelectionChanged += new System.EventHandler(this.dataGridStudents_SelectionChanged);
-            this.dataGridStudents.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridStudents_UserAddedRow);
-            // 
-            // Date_of_join
-            // 
-            this.Date_of_join.DataPropertyName = "Date of join";
-            this.Date_of_join.HeaderText = "Date of join";
-            this.Date_of_join.Name = "Date_of_join";
-            this.Date_of_join.Visible = false;
-            // 
             // parentsListDataGridView
             // 
             this.parentsListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -310,7 +282,7 @@
             this.parentsListDataGridView.Location = new System.Drawing.Point(0, 341);
             this.parentsListDataGridView.Name = "parentsListDataGridView";
             this.parentsListDataGridView.ReadOnly = true;
-            this.parentsListDataGridView.Size = new System.Drawing.Size(878, 116);
+            this.parentsListDataGridView.Size = new System.Drawing.Size(953, 186);
             this.parentsListDataGridView.TabIndex = 2;
             // 
             // dataGridViewTextBoxColumn1
@@ -318,48 +290,56 @@
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Parent ID";
             this.dataGridViewTextBoxColumn1.HeaderText = "Parent ID";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "Last Name";
             this.dataGridViewTextBoxColumn2.HeaderText = "Last Name";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "First Name";
             this.dataGridViewTextBoxColumn3.HeaderText = "First Name";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "Patronymic";
             this.dataGridViewTextBoxColumn4.HeaderText = "Patronymic";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "Email";
             this.dataGridViewTextBoxColumn5.HeaderText = "Email";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "Password";
             this.dataGridViewTextBoxColumn6.HeaderText = "Password";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "Phone";
             this.dataGridViewTextBoxColumn7.HeaderText = "Phone";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.DataPropertyName = "Job";
             this.dataGridViewTextBoxColumn8.HeaderText = "Job";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
             // 
             // parentsListBindingSource
             // 
@@ -370,101 +350,6 @@
             // 
             this.schooljournalDataSet.DataSetName = "schooljournalDataSet";
             this.schooljournalDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // StudentID
-            // 
-            this.StudentID.DataPropertyName = "Student ID";
-            this.StudentID.HeaderText = "Student ID";
-            this.StudentID.Name = "StudentID";
-            this.StudentID.ReadOnly = true;
-            // 
-            // Last_name
-            // 
-            this.Last_name.DataPropertyName = "Last name";
-            this.Last_name.HeaderText = "Last name";
-            this.Last_name.Name = "Last_name";
-            // 
-            // First_name
-            // 
-            this.First_name.DataPropertyName = "First name";
-            this.First_name.HeaderText = "First name";
-            this.First_name.Name = "First_name";
-            // 
-            // Patronymic
-            // 
-            this.Patronymic.DataPropertyName = "Patronymic";
-            this.Patronymic.HeaderText = "Patronymic";
-            this.Patronymic.Name = "Patronymic";
-            // 
-            // Grade
-            // 
-            this.Grade.DataPropertyName = "Grade";
-            this.Grade.DataSource = this.getDistinctGradesBindingSource;
-            this.Grade.DisplayMember = "Grade";
-            this.Grade.HeaderText = "Grade";
-            this.Grade.Name = "Grade";
-            this.Grade.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Grade.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Grade.ValueMember = "Grade";
-            // 
-            // getDistinctGradesBindingSource
-            // 
-            this.getDistinctGradesBindingSource.DataMember = "getDistinctGrades";
-            this.getDistinctGradesBindingSource.DataSource = this.schooljournalDataSet;
-            // 
-            // Email
-            // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            // 
-            // Password
-            // 
-            this.Password.DataPropertyName = "Password";
-            this.Password.HeaderText = "Password";
-            this.Password.Name = "Password";
-            // 
-            // studentsListBindingSource
-            // 
-            this.studentsListBindingSource.DataMember = "studentsList";
-            this.studentsListBindingSource.DataSource = this.schooljournalDataSet;
-            // 
-            // studentsListTableAdapter
-            // 
-            this.studentsListTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.adminTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.Connection = null;
-            this.tableAdapterManager.gradeTableAdapter = null;
-            this.tableAdapterManager.groupTableAdapter = null;
-            this.tableAdapterManager.lesson_studentTableAdapter = null;
-            this.tableAdapterManager.lessonTableAdapter = null;
-            this.tableAdapterManager.marksTableAdapter = null;
-            this.tableAdapterManager.parent_studentTableAdapter = null;
-            this.tableAdapterManager.parentTableAdapter = null;
-            this.tableAdapterManager.student_groupTableAdapter = null;
-            this.tableAdapterManager.studentTableAdapter = null;
-            this.tableAdapterManager.subjectTableAdapter = null;
-            this.tableAdapterManager.teacher_lessonTableAdapter = null;
-            this.tableAdapterManager.teacherTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = SchoolJournalGUI.schooljournalDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.userTableAdapter = null;
-            // 
-            // getDistinctGradesTableAdapter
-            // 
-            this.getDistinctGradesTableAdapter.ClearBeforeFill = true;
-            // 
-            // parentsListTableAdapter
-            // 
-            this.parentsListTableAdapter.ClearBeforeFill = true;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigator2
             // 
@@ -498,11 +383,18 @@
             this.bindingNavigator2.TabIndex = 3;
             this.bindingNavigator2.Text = "bindingNavigator2";
             // 
+            // bindingNavigatorCountItem1
+            // 
+            this.bindingNavigatorCountItem1.Name = "bindingNavigatorCountItem1";
+            this.bindingNavigatorCountItem1.Size = new System.Drawing.Size(35, 22);
+            this.bindingNavigatorCountItem1.Text = "of {0}";
+            this.bindingNavigatorCountItem1.ToolTipText = "Total number of items";
+            // 
             // bindingNavigatorMoveFirstItem1
             // 
             this.bindingNavigatorMoveFirstItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.bindingNavigatorMoveFirstItem1.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem1.Image")));
-            this.bindingNavigatorMoveFirstItem1.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem1.Name = "bindingNavigatorMoveFirstItem1";
             this.bindingNavigatorMoveFirstItem1.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMoveFirstItem1.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveFirstItem1.Text = "Move first";
@@ -511,42 +403,35 @@
             // 
             this.bindingNavigatorMovePreviousItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.bindingNavigatorMovePreviousItem1.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem1.Image")));
-            this.bindingNavigatorMovePreviousItem1.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem1.Name = "bindingNavigatorMovePreviousItem1";
             this.bindingNavigatorMovePreviousItem1.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMovePreviousItem1.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMovePreviousItem1.Text = "Move previous";
             // 
             // bindingNavigatorSeparator3
             // 
-            this.bindingNavigatorSeparator3.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator3.Name = "bindingNavigatorSeparator3";
             this.bindingNavigatorSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorPositionItem1
             // 
             this.bindingNavigatorPositionItem1.AccessibleName = "Position";
             this.bindingNavigatorPositionItem1.AutoSize = false;
-            this.bindingNavigatorPositionItem1.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem1.Name = "bindingNavigatorPositionItem1";
             this.bindingNavigatorPositionItem1.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem1.Text = "0";
             this.bindingNavigatorPositionItem1.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem1
-            // 
-            this.bindingNavigatorCountItem1.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem1.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem1.Text = "of {0}";
-            this.bindingNavigatorCountItem1.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator4
             // 
-            this.bindingNavigatorSeparator4.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator4.Name = "bindingNavigatorSeparator4";
             this.bindingNavigatorSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem1
             // 
             this.bindingNavigatorMoveNextItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.bindingNavigatorMoveNextItem1.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem1.Image")));
-            this.bindingNavigatorMoveNextItem1.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem1.Name = "bindingNavigatorMoveNextItem1";
             this.bindingNavigatorMoveNextItem1.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMoveNextItem1.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveNextItem1.Text = "Move next";
@@ -555,14 +440,14 @@
             // 
             this.bindingNavigatorMoveLastItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.bindingNavigatorMoveLastItem1.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem1.Image")));
-            this.bindingNavigatorMoveLastItem1.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem1.Name = "bindingNavigatorMoveLastItem1";
             this.bindingNavigatorMoveLastItem1.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMoveLastItem1.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveLastItem1.Text = "Move last";
             // 
             // bindingNavigatorSeparator5
             // 
-            this.bindingNavigatorSeparator5.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator5.Name = "bindingNavigatorSeparator5";
             this.bindingNavigatorSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // btnAddParent
@@ -574,6 +459,11 @@
             this.btnAddParent.Text = "Add student parent";
             this.btnAddParent.Click += new System.EventHandler(this.btnAddParent_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // btnDeleteStudentParent
             // 
             this.btnDeleteStudentParent.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteStudentParent.Image")));
@@ -583,10 +473,10 @@
             this.btnDeleteStudentParent.Text = "Delete student parent";
             this.btnDeleteStudentParent.Click += new System.EventHandler(this.btnDeleteStudentParent_Click);
             // 
-            // toolStripSeparator2
+            // toolStripSeparator3
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // btnRemoveParent
             // 
@@ -597,19 +487,133 @@
             this.btnRemoveParent.Text = "Remove parent record";
             this.btnRemoveParent.Click += new System.EventHandler(this.btnRemoveParent_Click);
             // 
-            // toolStripSeparator3
+            // studentsListBindingSource
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.studentsListBindingSource.DataMember = "studentsList";
+            this.studentsListBindingSource.DataSource = this.schooljournalDataSet;
+            // 
+            // getDistinctGradesBindingSource
+            // 
+            this.getDistinctGradesBindingSource.DataMember = "getDistinctGrades";
+            this.getDistinctGradesBindingSource.DataSource = this.schooljournalDataSet;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.adminTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.Connection = null;
+            this.tableAdapterManager.gradeTableAdapter = null;
+            this.tableAdapterManager.groupTableAdapter = null;
+            this.tableAdapterManager.lesson_studentTableAdapter = null;
+            this.tableAdapterManager.lessonTableAdapter = null;
+            this.tableAdapterManager.marksTableAdapter = null;
+            this.tableAdapterManager.parent_studentTableAdapter = null;
+            this.tableAdapterManager.parentTableAdapter = null;
+            this.tableAdapterManager.student_groupTableAdapter = null;
+            this.tableAdapterManager.studentTableAdapter = null;
+            this.tableAdapterManager.subjectTableAdapter = null;
+            this.tableAdapterManager.teacher_lessonTableAdapter = null;
+            this.tableAdapterManager.teacherTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = SchoolJournalGUI.schooljournalDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.userTableAdapter = null;
+            // 
+            // getDistinctGradesTableAdapter
+            // 
+            this.getDistinctGradesTableAdapter.ClearBeforeFill = true;
+            // 
+            // parentsListTableAdapter
+            // 
+            this.parentsListTableAdapter.ClearBeforeFill = true;
+            // 
+            // studentsListTableAdapter
+            // 
+            this.studentsListTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridStudents
+            // 
+            this.dataGridStudents.AutoGenerateColumns = false;
+            this.dataGridStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this._StudentID,
+            this._Last_name,
+            this._First_name,
+            this._Patronymic,
+            this._Grade,
+            this._Email,
+            this._Password,
+            this._Date_of_join});
+            this.dataGridStudents.DataSource = this.studentsListBindingSource;
+            this.dataGridStudents.Location = new System.Drawing.Point(0, 28);
+            this.dataGridStudents.Name = "dataGridStudents";
+            this.dataGridStudents.Size = new System.Drawing.Size(953, 282);
+            this.dataGridStudents.TabIndex = 3;
+            this.dataGridStudents.SelectionChanged += new System.EventHandler(this.dataGridStudents_SelectionChanged);
+            this.dataGridStudents.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridStudents_UserAddedRow);
+            // 
+            // _StudentID
+            // 
+            this._StudentID.DataPropertyName = "Student ID";
+            this._StudentID.HeaderText = "Student ID";
+            this._StudentID.Name = "_StudentID";
+            this._StudentID.ReadOnly = true;
+            // 
+            // _Last_name
+            // 
+            this._Last_name.DataPropertyName = "Last name";
+            this._Last_name.HeaderText = "Last name";
+            this._Last_name.Name = "_Last_name";
+            // 
+            // _First_name
+            // 
+            this._First_name.DataPropertyName = "First name";
+            this._First_name.HeaderText = "First name";
+            this._First_name.Name = "_First_name";
+            // 
+            // _Patronymic
+            // 
+            this._Patronymic.DataPropertyName = "Patronymic";
+            this._Patronymic.HeaderText = "Patronymic";
+            this._Patronymic.Name = "_Patronymic";
+            // 
+            // _Grade
+            // 
+            this._Grade.DataPropertyName = "Grade";
+            this._Grade.DataSource = this.getDistinctGradesBindingSource;
+            this._Grade.DisplayMember = "Grade";
+            this._Grade.HeaderText = "Grade";
+            this._Grade.Name = "_Grade";
+            this._Grade.ReadOnly = true;
+            this._Grade.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this._Grade.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this._Grade.ValueMember = "Grade";
+            // 
+            // _Email
+            // 
+            this._Email.DataPropertyName = "Email";
+            this._Email.HeaderText = "Email";
+            this._Email.Name = "_Email";
+            // 
+            // _Password
+            // 
+            this._Password.DataPropertyName = "Password";
+            this._Password.HeaderText = "Password";
+            this._Password.Name = "_Password";
+            // 
+            // _Date_of_join
+            // 
+            this._Date_of_join.DataPropertyName = "Date of join";
+            this._Date_of_join.HeaderText = "Date of join";
+            this._Date_of_join.Name = "_Date_of_join";
             // 
             // ManageStudentsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 463);
+            this.ClientSize = new System.Drawing.Size(958, 533);
+            this.Controls.Add(this.dataGridStudents);
             this.Controls.Add(this.bindingNavigator2);
             this.Controls.Add(this.parentsListDataGridView);
-            this.Controls.Add(this.dataGridStudents);
             this.Controls.Add(this.bindingNavigator1);
             this.Name = "ManageStudentsWindow";
             this.Text = "Manage Students - School Journal";
@@ -617,15 +621,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.parentsListDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.parentsListBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schooljournalDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getDistinctGradesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentsListBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator2)).EndInit();
             this.bindingNavigator2.ResumeLayout(false);
             this.bindingNavigator2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsListBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.getDistinctGradesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridStudents)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -651,18 +655,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gradeIDDataGridViewTextBoxColumn;
         private schooljournalDataSet schooljournalDataSet;
         private System.Windows.Forms.BindingSource studentsListBindingSource;
-        private schooljournalDataSetTableAdapters.studentsListTableAdapter studentsListTableAdapter;
         private schooljournalDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView dataGridStudents;
         private System.Windows.Forms.BindingSource getDistinctGradesBindingSource;
         private schooljournalDataSetTableAdapters.getDistinctGradesTableAdapter getDistinctGradesTableAdapter;
         private System.Windows.Forms.ToolStripButton toolStripDeleteRecord;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StudentID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date_of_join;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Last_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn First_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Patronymic;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Grade;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Password;
         private System.Windows.Forms.BindingSource parentsListBindingSource;
@@ -692,5 +689,15 @@
         private System.Windows.Forms.ToolStripButton btnDeleteStudentParent;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnRemoveParent;
+        private schooljournalDataSetTableAdapters.studentsListTableAdapter studentsListTableAdapter;
+        private System.Windows.Forms.DataGridView dataGridStudents;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _StudentID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _Last_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _First_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _Patronymic;
+        private System.Windows.Forms.DataGridViewComboBoxColumn _Grade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _Password;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _Date_of_join;
     }
 }

@@ -14,9 +14,11 @@ namespace SchoolJournalGUI
 {
     public partial class ManageTeachersWindow : Form
     {
-        public ManageTeachersWindow()
+        bool HasDeleteRights { get; set; }
+        public ManageTeachersWindow(bool hasDeleteRights)
         {
             InitializeComponent();
+            this.HasDeleteRights = hasDeleteRights;
         }
 
         private void ManageTeachersWindow_Load(object sender, EventArgs e)
@@ -24,6 +26,11 @@ namespace SchoolJournalGUI
             // TODO: This line of code loads data into the 'schooljournalDataSet.teachersList' table. You can move, or remove it, as needed.
             this.teachersListTableAdapter.Fill(this.schooljournalDataSet.teachersList);
             this.toolStripSavedStatus.Text = "Changes saved!";
+
+            if (!HasDeleteRights) //disable all delete buttons
+            {
+                toolStripButtonDeleteRecord.Enabled = false;
+            }
         }
 
         private void teachersListDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)

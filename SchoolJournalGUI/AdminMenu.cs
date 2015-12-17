@@ -14,11 +14,14 @@ namespace SchoolJournalGUI
 {
     public partial class AdminMenu : Form
     {
-        int AdminID { get; set; }
+        public int AdminID { get; private set; }
+        AdminInfo info = null;
+
         public AdminMenu(int adminID)
         {
             InitializeComponent();
             AdminID = adminID;
+            this.info = AdminDAL.GetAdmin(this.AdminID);
         }
 
         private void AdminMenu_Load(object sender, EventArgs e)
@@ -28,7 +31,6 @@ namespace SchoolJournalGUI
 
         private void btnMyProfile_Click(object sender, EventArgs e)
         {
-            AdminInfo info = AdminDAL.GetAdmin(this.AdminID);
             ProfileWindow wnd = new ProfileWindow(info, "Has delete rights", info.HasDeleteRights.ToString());
             wnd.FormClosed += ((o, s) =>
             {
@@ -42,7 +44,7 @@ namespace SchoolJournalGUI
         private void btnManageStudents_Click(object sender, EventArgs e)
         {
             //open manage stuents windows
-            ManageStudentsWindow wnd = new ManageStudentsWindow();
+            ManageStudentsWindow wnd = new ManageStudentsWindow(this.info.HasDeleteRights);
             wnd.FormClosed += ((o, s) =>
             {
                 this.Show();
@@ -55,7 +57,7 @@ namespace SchoolJournalGUI
         private void btnManageTeachers_Click(object sender, EventArgs e)
         {
             //manage teachers window
-            ManageTeachersWindow wnd = new ManageTeachersWindow();
+            ManageTeachersWindow wnd = new ManageTeachersWindow(this.info.HasDeleteRights);
             wnd.FormClosed += ((o, s) =>
             {
                 this.Show();
@@ -88,7 +90,7 @@ namespace SchoolJournalGUI
             //open manage teacher groups window
             //ManageTeacherGroupsDialog wnd = new ManageTeacherGroupsDialog();
             //wnd.ShowDialog();
-            ManageTeachersGroups wnd = new ManageTeachersGroups();
+            ManageTeachersGroups wnd = new ManageTeachersGroups(this.info.HasDeleteRights);
             wnd.Show();
         }
     }

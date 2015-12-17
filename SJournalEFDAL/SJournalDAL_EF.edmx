@@ -255,7 +255,7 @@
           <Property Name="patronymic" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="dob" Type="date" />
           <Property Name="email" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="password" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="60" />
           <Property Name="phone" Type="varchar" MaxLength="45" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -556,7 +556,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="R_9">
-          <End Role="parent" Type="schooljournalModel.Store.parent" Multiplicity="1" />
+          <End Role="parent" Type="schooljournalModel.Store.parent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="parent_student" Type="schooljournalModel.Store.parent_student" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="parent">
@@ -850,7 +852,7 @@
           <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
           <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
           <Property Name="Phone" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="admin" Relationship="schooljournalModel.R_33" FromRole="user" ToRole="admin" />
           <NavigationProperty Name="parent" Relationship="schooljournalModel.R_32" FromRole="user" ToRole="parent" />

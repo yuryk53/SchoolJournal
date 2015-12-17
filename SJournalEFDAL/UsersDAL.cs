@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Data;
+using CryptSharp;
 
 namespace SJournalEFDAL
 {
@@ -19,14 +20,23 @@ namespace SJournalEFDAL
 
     public class UsersDAL
     {
-        public static User GetUserByCredentials(string email, string password)
+        //password - not hashed password
+        public static User GetUserByCredentials(string email, string plainPassword)
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
+                string cryptedPassword = Crypter.Blowfish.Crypt(plainPassword);
                 var user = (from usr in context.Users
-                            where usr.Email == email && usr.Password == password
-                            select usr).FirstOrDefault();
-                return user;
+                            where usr.Email == email
+                            select usr).ToList();
+                foreach (User usr in user)
+                {
+                    if (Crypter.CheckPassword(plainPassword, usr.Password))
+                    {
+                        return usr;
+                    }
+                }
+                return null;
             }
         }
 
@@ -39,6 +49,7 @@ namespace SJournalEFDAL
                     context.Database.UseTransaction(transaction);
                 }
                 User newUser = u.GetUser();
+                newUser.Password = Crypter.Blowfish.Crypt(newUser.Password); //newUser entity contains uncrypted password!
                 context.Users.Add(newUser);
                 context.SaveChanges();
 
@@ -76,25 +87,38 @@ namespace SJournalEFDAL
             }
         }
 
-        public static void UpdateUserInfo(UserInfo info)
+        public static void UpdateUserInfo(UserInfo userInfo)
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
-                User userToUpdate = (User)context.Set<User>().Find(info.UserID);
-                userToUpdate.UserID = info.UserID;
-                userToUpdate.LastName = info.LastName;
-                userToUpdate.FirstName = info.FirstName;
-                userToUpdate.Patronymic = info.Patronymic;
-                userToUpdate.Password = info.Password;
-                userToUpdate.Email = info.Email;
-                userToUpdate.Phone = info.Phone;
-                userToUpdate.DateOfBirth = info.DoB;
+                User userToUpdate = (User)context.Set<User>().Find(userInfo.UserID);
+                userToUpdate.UserID = userInfo.UserID;
+                userToUpdate.LastName = userInfo.LastName;
+                userToUpdate.FirstName = userInfo.FirstName;
+                userToUpdate.Patronymic = userInfo.Patronymic;
+                if (userToUpdate.Password == userInfo.Password) //password supplied is crypted already
+                {
+                    //do nothing - passwords already the same
+                }
+                else
+                {
+                    userToUpdate.Password = Crypter.Blowfish.Crypt(userInfo.Password);
+                }
+                userToUpdate.Email = userInfo.Email;
+                userToUpdate.Phone = userInfo.Phone;
+                userToUpdate.DateOfBirth = userInfo.DoB;
 
                 context.SaveChanges();               
             }
             
         }
 
+        /// <summary>
+        /// Changes user password
+        /// </summary>
+        /// <param name="UserID">UserID</param>
+        /// <param name="oldPass">old plain text password</param>
+        /// <param name="newPass">new plain text password</param>
         public static void ChangeUserPassword(int UserID, string oldPass, string newPass)
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
@@ -102,9 +126,11 @@ namespace SJournalEFDAL
                 if (newPass.Length > 0)
                 {
                     User userToUpdate = (User)context.Set<User>().Find(UserID);
-                    if (userToUpdate.Password.Equals(oldPass))
+                    //if (userToUpdate.Password.Equals(oldPass))
+                    if(Crypter.CheckPassword(oldPass, userToUpdate.Password))
                     {
-                        userToUpdate.Password = newPass;
+                        //userToUpdate.Password = newPass;
+                        userToUpdate.Password = Crypter.Blowfish.Crypt(newPass);
                         context.SaveChanges();
                     }
                     else throw new ArgumentException("Old password is incorrect!");
@@ -113,6 +139,10 @@ namespace SJournalEFDAL
             }
         }
 
+        /// <summary>
+        /// Updates a user
+        /// </summary>
+        /// <param name="u">New passwords supplied should be plain text!</param>
         public static void UpdateUser(UserInfo u)
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
@@ -126,7 +156,10 @@ namespace SJournalEFDAL
                 userToUpdate.Patronymic = u.Patronymic;
                 userToUpdate.DateOfBirth = u.DoB;
                 userToUpdate.Email = u.Email;
-                userToUpdate.Password = u.Password;
+                if (userToUpdate.Password != u.Password) //new password supplied => crypt it!
+                {
+                    userToUpdate.Password = Crypter.Blowfish.Crypt(u.Password);
+                }
                 userToUpdate.Phone = u.Phone;
 
                 context.SaveChanges();

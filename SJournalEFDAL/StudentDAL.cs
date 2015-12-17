@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.Entity.Core.Objects;
 using System.Data.SqlClient;
+
+using CryptSharp;
 namespace SJournalEFDAL
 {
     public class MarkInfo
@@ -46,6 +48,7 @@ namespace SJournalEFDAL
         public static int AddNewStudent(string firstName, string lastName, string patronymic, DateTime? dateOfBirth,
                                           string email, string password, string phone, string gradeName)
         {
+            string cpassword = Crypter.Blowfish.Crypt(password);
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
                 context.addNewStudent(firstName,
@@ -53,22 +56,26 @@ namespace SJournalEFDAL
                                       patronymic,
                                       dateOfBirth,
                                       email,
-                                      password,
+                                      cpassword,
                                       phone,
                                       gradeName);
                 
                 context.SaveChanges();
 
-                var userID = (from user in context.Users
+                var users = (from user in context.Users
                               where user.FirstName == firstName &&
                                     user.LastName == lastName &&
                                     user.Patronymic == patronymic &&
                                     user.DateOfBirth == dateOfBirth &&
                                     user.Email == email &&
-                                    user.Password == password &&
                                     user.Phone == phone
-                              select user.UserID).First();
-                return userID;
+                              select user).ToList();
+                foreach (User user in users)
+                {
+                    if (user.Password==cpassword)
+                        return user.UserID;
+                }
+                return -1;
                                                                
             }
         }
