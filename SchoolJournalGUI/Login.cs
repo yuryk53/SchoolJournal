@@ -34,6 +34,7 @@ namespace SchoolJournalGUI
 
             WaitWindow wait = new WaitWindow();
             wait.Owner = this;
+            wait.StartPosition = FormStartPosition.CenterParent;
             wait.Show();
 
             user = await Task.Factory.StartNew<User>(

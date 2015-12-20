@@ -26,10 +26,7 @@ namespace SchoolJournalGUI
 
         private void ManageStudentsWindow_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'schooljournalDataSet.getDistinctGrades' table. You can move, or remove it, as needed.
-            this.getDistinctGradesTableAdapter.Fill(this.schooljournalDataSet.getDistinctGrades);
-            // TODO: This line of code loads data into the 'schooljournalDataSet.studentsList' table. You can move, or remove it, as needed.
-            this.studentsListTableAdapter.Fill(this.schooljournalDataSet.studentsList);
+            UpdateDataGridViews();
 
 
             if (!HasDeleteRights)
@@ -54,6 +51,37 @@ namespace SchoolJournalGUI
             bs2.DataSource = parentsListDataGridView.DataSource;
             bindingNavigator2.BindingSource = bs2;
             parentsListDataGridView.DataSource = bs2;
+
+            dataGridStudents.DataError += dataGridStudents_DataError;
+        }
+
+        private void UpdateDataGridViews()
+        {
+            try
+            {
+                this.dataGridStudents.SelectionChanged -= dataGridStudents_SelectionChanged;
+                
+                // TODO: This line of code loads data into the 'schooljournalDataSet.getDistinctGrades' table. You can move, or remove it, as needed.
+                this.getDistinctGradesTableAdapter.Fill(this.schooljournalDataSet.getDistinctGrades);
+                // TODO: This line of code loads data into the 'schooljournalDataSet.studentsList' table. You can move, or remove it, as needed.
+                this.studentsListTableAdapter.Fill(this.schooljournalDataSet.studentsList);
+
+                this.dataGridStudents.SelectionChanged += dataGridStudents_SelectionChanged;
+                this.dataGridStudents.Select();
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                if (ex.InnerException != null)
+                    msg += "\n" + ex.InnerException.Message;
+                MessageBox.Show("Error while updating data grid!\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void dataGridStudents_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            e.Cancel = true;
         }
 
         private void toolStripButtonSave_Click(object sender, EventArgs e)
@@ -71,31 +99,39 @@ namespace SchoolJournalGUI
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error while updating student!\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        DateTime dateOfJoin;
-                        DateTime? parsedDateOfJoin = null;
-                        bool success = DateTime.TryParse(dataGridStudents["_Date_of_join", i].Value.ToString(), out dateOfJoin);
-                        if (success)
-                            parsedDateOfJoin = dateOfJoin;
-                        //check all fields and save
-                        StudentDAL.UpdateStudent(new StudentInfo(
-                                int.Parse(dataGridStudents["_StudentID", i].Value.ToString()),
-                                dataGridStudents["_First_name", i].Value.ToString(),
-                                dataGridStudents["_Last_name", i].Value.ToString(),
-                                dataGridStudents["_Patronymic", i].Value.ToString(),
-                                null,
-                                dataGridStudents["_Email", i].Value.ToString(),
-                                dataGridStudents["_Password", i].Value.ToString(),
-                                null,
-                                0, //заглушка для gradeID
-                                dataGridStudents["_Grade", i].EditedFormattedValue.ToString(),
-                                parsedDateOfJoin));
+                        try
+                        {
+                            DateTime dateOfJoin;
+                            DateTime? parsedDateOfJoin = null;
+                            bool success = DateTime.TryParse(dataGridStudents["_Date_of_join", i].Value.ToString(), out dateOfJoin);
+                            if (success)
+                                parsedDateOfJoin = dateOfJoin;
+                            //check all fields and save
+                            StudentDAL.UpdateStudent(new StudentInfo(
+                                    int.Parse(dataGridStudents["_StudentID", i].Value.ToString()),
+                                    dataGridStudents["_First_name", i].Value.ToString(),
+                                    dataGridStudents["_Last_name", i].Value.ToString(),
+                                    dataGridStudents["_Patronymic", i].Value.ToString(),
+                                    null,
+                                    dataGridStudents["_Email", i].Value.ToString(),
+                                    dataGridStudents["_Password", i].Value.ToString(),
+                                    null,
+                                    0, //заглушка для gradeID
+                                    dataGridStudents["_Grade", i].EditedFormattedValue.ToString(),
+                                    parsedDateOfJoin));
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error while updating student!\n"+ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
+                UpdateDataGridViews();
             }
         }
 
@@ -134,6 +170,11 @@ namespace SchoolJournalGUI
 
         private void toolStripDeleteRecord_Click(object sender, EventArgs e)
         {
+            if (dataGridStudents.CurrentRow.IsNewRow)
+            {
+                MessageBox.Show("Cannot delete empty record!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             //delete student with such student id
             if (dataGridStudents.SelectedRows.Count > 1)
             {
@@ -233,7 +274,6 @@ namespace SchoolJournalGUI
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
     }
 }
