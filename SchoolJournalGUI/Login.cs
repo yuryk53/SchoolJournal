@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using SJournalEFDAL;
+using System.Threading;
 
 namespace SchoolJournalGUI
 {
@@ -24,16 +25,29 @@ namespace SchoolJournalGUI
 
         }
 
-        private void btnSubmit_Click(object sender, EventArgs e)
+        private async void btnSubmit_Click(object sender, EventArgs e)
         {
             string email = this.txtEmail.Text;
             string password = this.txtPassword.Text;
 
-            WaitWindow wait = new WaitWindow();
-            wait.Show();
-            User user = UsersDAL.GetUserByCredentials(email, password);
-            wait.Close();
+            User user = null;
 
+            WaitWindow wait = new WaitWindow();
+            wait.Owner = this;
+            wait.Show();
+
+            user = await Task.Factory.StartNew<User>(
+                new Func<User>(()=>UsersDAL.GetUserByCredentials(email, password))
+            );
+            
+            //user = UsersDAL.GetUserByCredentials(email, password);
+            
+            wait.Close();
+            AuthenticateUser(user);
+        }
+
+        private void AuthenticateUser(User user)
+        {
             if (user == null)
             {
                 MessageBox.Show("Email or password is invalid!", "No such user!", MessageBoxButtons.OK, MessageBoxIcon.Error);
