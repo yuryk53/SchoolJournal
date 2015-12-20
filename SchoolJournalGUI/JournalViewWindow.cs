@@ -103,8 +103,20 @@ namespace SchoolJournalGUI
             studyYears = AttendanceJournalDAL.GetStudyYears(this.TeacherID,
                                                                          (int)this.teacherGrades[comboBoxGrade.SelectedIndex].GradeNo,
                                                                          7);
+            if (studyYears.Count == 0)
+                studyYears.Add(GetCurrentStudyYear());
             UpdateComboStudyYear();
             UpdateGridJournalData();
+        }
+
+        private string GetCurrentStudyYear()
+        {
+            if(DateTime.Now.Month<=7 && DateTime.Now.Month>=1)
+            {
+                return string.Format("{0}-{1}", DateTime.Now.Year-1, DateTime.Now.Year); 
+            }
+            else
+                return string.Format("{0}-{1}", DateTime.Now.Year, DateTime.Now.Year+1);
         }
 
         private void UpdateComboStudyYear()
@@ -114,7 +126,8 @@ namespace SchoolJournalGUI
             {
                 comboStudyYear.Items.Add(year);
             }
-            comboStudyYear.SelectedIndex = 0;
+            if(comboStudyYear.Items.Count>0)
+                comboStudyYear.SelectedIndex = 0;
         }
 
         private void gridJournal_DataSourceChanged(object sender, EventArgs e)

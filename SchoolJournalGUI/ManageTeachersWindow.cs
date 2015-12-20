@@ -51,7 +51,20 @@ namespace SchoolJournalGUI
                 {
                     if (r.IsNewRow)
                         continue;
-                    int teacherID = int.Parse(teachersListDataGridView["teacherID", r.Index].Value.ToString());
+
+                    int teacherID = -1;
+                    try
+                    {
+                        teacherID = int.Parse(teachersListDataGridView["teacherID", r.Index].Value.ToString());
+                    }
+                    catch (ArgumentException)
+                    {
+                        MessageBox.Show(
+                            string.Format("Incorrect teacherID in row {0}!\nMaybe you've created empty rows?",r.Index),
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    }
+
                     if (teacherIDs.Contains(teacherID)) //update record
                     {
                         DateTime? dateOfBirth;
@@ -104,6 +117,7 @@ namespace SchoolJournalGUI
                 }
 
                 this.toolStripSavedStatus.Text = "Changes saved!";
+                MessageBox.Show("Changes successfully changed!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -149,7 +163,8 @@ namespace SchoolJournalGUI
             }
             catch
             {
-                teachersListDataGridView["teacherID", rowIndex - 1].Value = 0;
+                //teachersListDataGridView["teacherID", rowIndex - 1].Value = 0;
+                teachersListDataGridView.Rows.RemoveAt(rowIndex - 1);
             }
             this.toolStripSavedStatus.Text = "Changes not saved!";
         }
