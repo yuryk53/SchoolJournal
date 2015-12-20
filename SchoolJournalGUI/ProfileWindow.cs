@@ -86,6 +86,9 @@ namespace SchoolJournalGUI
             catch
             { u.DateOfBirth = null; }
             u.Password = this.info.Password;
+
+            if (!Util.IsValidEmail(txtEmail.Text))
+                throw new ArgumentException("Email string is not a valid email!");
             u.Email = txtEmail.Text;
             u.Phone = txtPhone.Text;
             UserInfo newInfo = new UserInfo(u);
@@ -96,10 +99,17 @@ namespace SchoolJournalGUI
         {
             if (AllowEdit) //we were in edit mode -> save changes
             {
-                GatherInfoFromFields();
-                UsersDAL.UpdateUserInfo(this.info);
-                UpdateFields();
-                AllowEdit = false;
+                try
+                {
+                    GatherInfoFromFields();
+                    UsersDAL.UpdateUserInfo(this.info);
+                    UpdateFields();
+                    AllowEdit = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else AllowEdit = true;
         }

@@ -25,6 +25,11 @@ namespace SchoolJournalGUI
         {
             DataTable dtGroups = TeacherDAL.GetTeacherGroups(TeacherID);//TeacherDAL.GetTeacherStudents(TeacherID);
             this.dataGridViewGroups.DataSource = dtGroups;
+
+            foreach (DataGridViewColumn dc in dataGridViewGroups.Columns)
+                if (dc.Name != "Description")
+                    dc.ReadOnly = true;
+
             this.dataGridViewGroups.Update();
 
             //bind binging navigator to data grid
@@ -45,6 +50,21 @@ namespace SchoolJournalGUI
             DataTable dtGroupStudents = GroupDAL.GetGroupStudents(
                 (int)dataGridViewGroups.Rows[dataGridViewGroups.SelectedCells[0].RowIndex].Cells["Group ID"].Value);
             this.dataGridViewGroupStudents.DataSource = dtGroupStudents;
+        }
+
+        private void dataGridViewGroups_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //at the momment we can only edit "Description" column
+                GroupDAL.UpdateGroup((int)dataGridViewGroups.Rows[dataGridViewGroups.SelectedCells[0].RowIndex].Cells["Group ID"].Value,
+                    dataGridViewGroups.Rows[dataGridViewGroups.SelectedCells[0].RowIndex].Cells["Description"].Value.ToString());
+                MessageBox.Show("Changes successfully saved!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

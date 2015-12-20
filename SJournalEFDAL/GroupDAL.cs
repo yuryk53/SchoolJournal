@@ -68,6 +68,17 @@ namespace SJournalEFDAL
                 context.SaveChanges();
             }
         }
+        public static void UpdateGroup(int groupID, string description)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                Group groupToUpdate = context.Set<Group>().Find(groupID);
+
+                groupToUpdate.GroupID = groupID;
+                groupToUpdate.Description = description;
+                context.SaveChanges();
+            }
+        }
 
         public static void AddStudentToGroup(int groupID, int studentID)
         {

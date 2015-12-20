@@ -51,6 +51,9 @@ namespace SJournalEFDAL
             string cpassword = Crypter.Blowfish.Crypt(password);
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
+                if (!Util.IsValidEmail(email))
+                    throw new ArgumentException("Email string is not a valid email!");
+
                 context.addNewStudent(firstName,
                                       lastName,
                                       patronymic,
@@ -110,6 +113,9 @@ namespace SJournalEFDAL
                 Student s = context.Set<Student>().Find(si.StudentID);
                 if (s == null)
                     throw new ArgumentNullException("StudentID to update cannot be null!");
+
+                if (!Util.IsValidEmail(si.Email))
+                    throw new ArgumentException("Email string is not a valid email!");
 
                 UsersDAL.UpdateUser(si);
 

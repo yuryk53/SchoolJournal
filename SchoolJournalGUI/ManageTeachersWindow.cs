@@ -25,12 +25,26 @@ namespace SchoolJournalGUI
         {
             // TODO: This line of code loads data into the 'schooljournalDataSet.teachersList' table. You can move, or remove it, as needed.
             this.teachersListTableAdapter.Fill(this.schooljournalDataSet.teachersList);
+            this.teachersListDataGridView.DataError += teachersListDataGridView_DataError;
             this.toolStripSavedStatus.Text = "Changes saved!";
 
             if (!HasDeleteRights) //disable all delete buttons
             {
                 toolStripButtonDeleteRecord.Enabled = false;
             }
+        }
+
+        void teachersListDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            Exception ex = e.Exception;
+            string msg = ex.Message;
+            if (ex.InnerException != null)
+                msg += "\n" + ex.InnerException.Message;
+            msg += "\nRow index: "+e.RowIndex;
+
+            MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            e.Cancel = true;
         }
 
         private void teachersListDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -155,18 +169,53 @@ namespace SchoolJournalGUI
 
         private void teachersListDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            int rowIndex = e.Row.Index;
             try
             {
-                int prevTeacherID = int.Parse(teachersListDataGridView["teacherID", rowIndex - 2].Value.ToString());
-                teachersListDataGridView["teacherID", rowIndex - 1].Value = prevTeacherID + 1;
+                OnRowAdd();
+            }
+            finally
+            {
+                this.toolStripSavedStatus.Text = "Changes not saved!";
+            }
+        }
+
+        private void OnRowAdd()
+        {
+            int rowIndex = teachersListDataGridView.Rows.Count - 1;
+            try
+            {
+                if (rowIndex > 0)
+                {
+                    int prevTeacherID = int.Parse(teachersListDataGridView["teacherID", rowIndex - 1].Value.ToString());
+                    teachersListDataGridView["teacherID", rowIndex].Value = prevTeacherID + 1;
+                }
+                else teachersListDataGridView["teacherID", rowIndex].Value = 0;
             }
             catch
             {
                 //teachersListDataGridView["teacherID", rowIndex - 1].Value = 0;
                 teachersListDataGridView.Rows.RemoveAt(rowIndex - 1);
+                throw;
+            }
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OnRowAdd();
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                if (ex.InnerException != null)
+                    msg += "\n" + ex.InnerException.Message;
+                msg += "\nMaybe you hasn't filled the last row correctly?";
+
+                MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             this.toolStripSavedStatus.Text = "Changes not saved!";
         }
+
     }
 }

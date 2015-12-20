@@ -49,6 +49,8 @@ namespace SJournalEFDAL
                     context.Database.UseTransaction(transaction);
                 }
                 User newUser = u.GetUser();
+                if (!Util.IsValidEmail(u.Email))
+                    throw new ArgumentException("Email string is not a valid email!");
                 newUser.Password = Crypter.Blowfish.Crypt(newUser.Password); //newUser entity contains uncrypted password!
                 context.Users.Add(newUser);
                 context.SaveChanges();
@@ -104,6 +106,8 @@ namespace SJournalEFDAL
                 {
                     userToUpdate.Password = Crypter.Blowfish.Crypt(userInfo.Password);
                 }
+                if (!Util.IsValidEmail(userInfo.Email))
+                    throw new ArgumentException("Email string is not a valid email!");
                 userToUpdate.Email = userInfo.Email;
                 userToUpdate.Phone = userInfo.Phone;
                 userToUpdate.DateOfBirth = userInfo.DoB;
@@ -155,6 +159,8 @@ namespace SJournalEFDAL
                 userToUpdate.LastName = u.LastName;
                 userToUpdate.Patronymic = u.Patronymic;
                 userToUpdate.DateOfBirth = u.DoB;
+                if (!Util.IsValidEmail(u.Email))
+                    throw new ArgumentException("Email string is not a valid email!");
                 userToUpdate.Email = u.Email;
                 if (userToUpdate.Password != u.Password) //new password supplied => crypt it!
                 {

@@ -58,6 +58,8 @@ namespace SJournalEFDAL
         {
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
+                if (!Util.IsValidEmail(newParent.user.Email))
+                    throw new ArgumentException("Email string is not a valid email!");
                 context.Parents.Add(newParent);
                 context.SaveChanges();
                 return newParent.ParentID;

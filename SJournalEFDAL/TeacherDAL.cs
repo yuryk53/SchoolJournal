@@ -26,6 +26,9 @@ namespace SJournalEFDAL
         public static int AddNewTeacher(TeacherInfo t)
         {    
             int userID;
+            if (!Util.IsValidEmail(t.Email))
+                throw new ArgumentException("Email string is not a valid email!");
+
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {
                 using (var dbContextTransaction = context.Database.BeginTransaction())
@@ -46,6 +49,9 @@ namespace SJournalEFDAL
 
         public static void UpdateTeacher(TeacherInfo t)
         {
+            if (!Util.IsValidEmail(t.Email))
+                throw new ArgumentException("Email string is not a valid email!");
+
             UsersDAL.UpdateUser(t);
             using (SchoolJournalEntities context = new SchoolJournalEntities())
             {

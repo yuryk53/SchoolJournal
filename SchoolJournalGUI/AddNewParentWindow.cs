@@ -42,6 +42,14 @@ namespace SchoolJournalGUI
         {
             try
             {
+                if (txtLastName.Text.Length == 0 || txtFirstName.Text.Length == 0 || txtPatronymic.Text.Length == 0)
+                    throw new ArgumentException("FIO fields can't be null!");
+                if (txtEmail.Text.Length == 0)
+                    throw new ArgumentException("Email is required!");
+                if (txtPassword.Text.Length == 0)
+                    throw new ArgumentException("Password is required!");
+                if (!Util.IsValidEmail(txtEmail.Text))
+                    throw new ArgumentException("Email is not valid!");
                 User basicUserInfo = new User
                 {
                     LastName = txtLastName.Text,
