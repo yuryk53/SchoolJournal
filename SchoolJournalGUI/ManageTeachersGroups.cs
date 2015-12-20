@@ -206,39 +206,53 @@ namespace SchoolJournalGUI
 
         private void btnAddStudentToGroup_Click(object sender, EventArgs e)
         {
-            int rowIndex = GroupsDataGridView.SelectedCells[0].RowIndex;
-            AddStudentToGroupDialog dialog = new AddStudentToGroupDialog(GroupsDataGridView["Grade", rowIndex].EditedFormattedValue.ToString());
-            //dialog.Owner = this;
-            dialog.FormClosed += (o, s) =>
-                {
-                    if (dialog.StudentID != 0)
+            try
+            {
+                if (GroupsDataGridView.CurrentRow.IsNewRow)
+                    throw new Exception("You cannot add students to non-existant group!");
+                int rowIndex = GroupsDataGridView.SelectedCells[0].RowIndex;
+                AddStudentToGroupDialog dialog = new AddStudentToGroupDialog(GroupsDataGridView["Grade", rowIndex].EditedFormattedValue.ToString());
+                //dialog.Owner = this;
+                dialog.FormClosed += (o, s) =>
                     {
-                        //studentsDataGridView.Rows.Add(dialog.GradeSection, dialog.LastName, dialog.FirstName, dialog.StudentID);
-                        //add new student
-                        try
+                        if (dialog.StudentID != 0)
                         {
-                            GroupDAL.AddStudentToGroup(
-                                int.Parse(GroupsDataGridView["GroupID", rowIndex].Value.ToString()),
-                                dialog.StudentID);
+                            //studentsDataGridView.Rows.Add(dialog.GradeSection, dialog.LastName, dialog.FirstName, dialog.StudentID);
+                            //add new student
+                            try
+                            {
+                                GroupDAL.AddStudentToGroup(
+                                    int.Parse(GroupsDataGridView["GroupID", rowIndex].Value.ToString()),
+                                    dialog.StudentID);
 
-                            this.getGroupStudentsTableAdapter.Fill(this.schooljournalDataSet.getGroupStudents, int.Parse(GroupsDataGridView["GroupID", rowIndex].Value.ToString()));
+                                this.getGroupStudentsTableAdapter.Fill(this.schooljournalDataSet.getGroupStudents, int.Parse(GroupsDataGridView["GroupID", rowIndex].Value.ToString()));
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            finally
+                            {
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        finally
-                        {
-                        }
-                    }
-                };
-            dialog.ShowDialog();
+                    };
+                dialog.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                if(ex.InnerException!=null)
+                    msg+="\n"+ex.InnerException.Message;
+                MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnRemoveStudentFromGroup_Click(object sender, EventArgs e)
         {
             try
             {
+                if (studentsDataGridView.CurrentRow.IsNewRow)
+                    throw new ArgumentOutOfRangeException("You cannot delete non-existant group student from this group!");
                 int rowIndex = studentsDataGridView.SelectedCells[0].RowIndex;
                 int studentID = int.Parse(studentsDataGridView["Student_ID", rowIndex].EditedFormattedValue.ToString());
                 int groupID = int.Parse(studentsDataGridView["Group_ID", rowIndex].EditedFormattedValue.ToString());
@@ -254,6 +268,10 @@ namespace SchoolJournalGUI
 
                     MessageBox.Show("Student successfully removed from the group!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Maybe, you haven't selected a student?", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {

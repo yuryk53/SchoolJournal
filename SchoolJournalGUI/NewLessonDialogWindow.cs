@@ -40,7 +40,7 @@ namespace SchoolJournalGUI
         private void btnCreateLesson_Click(object sender, EventArgs e)
         {
             string txtLessonTheme = this.txtLessonTheme.Text,
-                   txtNumberOfHours = this.txtHours.Text,
+                   txtNumberOfHours = this.comboBoxNHours.SelectedItem.ToString(),
                    txtHomeTask = this.txtHomeTask.Text;
 
             if (string.IsNullOrEmpty(txtLessonTheme))
@@ -57,6 +57,15 @@ namespace SchoolJournalGUI
             if(!int.TryParse(txtNumberOfHours, out numberOfHours))
             {
                 ShowExceptionMessage("Incorrect hours number format!");
+                return;
+            }
+
+            int studentsInGradeCount = StudentDAL.GetStudentCountByGradeName(comboGrade.SelectedItem.ToString());
+            if (studentsInGradeCount == 0)
+            {
+                MessageBox.Show(string.Format("No students in grade {0}!\nAsk administrator to add some!",
+                    comboGrade.SelectedItem.ToString()),
+                    "Impossible to create lesson!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

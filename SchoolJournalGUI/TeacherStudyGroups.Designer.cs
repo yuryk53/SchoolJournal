@@ -59,6 +59,7 @@
             this.dataGridViewGroups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGroups.Location = new System.Drawing.Point(0, 27);
             this.dataGridViewGroups.Name = "dataGridViewGroups";
+            this.dataGridViewGroups.ReadOnly = true;
             this.dataGridViewGroups.Size = new System.Drawing.Size(734, 202);
             this.dataGridViewGroups.TabIndex = 0;
             this.dataGridViewGroups.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGroups_CellClick);

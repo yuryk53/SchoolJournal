@@ -38,6 +38,7 @@ namespace SchoolJournalGUI
             this.lblDate.Text = newLesson.Date.ToShortDateString();
 
             BuildGridJournalNewLesson();
+            
             this.toolStripIsSaved.Text = "Saved.";
         }
 

@@ -286,5 +286,29 @@ namespace SJournalEFDAL
                 context.SaveChanges();
             }
         }
+
+        public static int GetStudentCountByGradeID(int gradeID)
+        {
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                var students = from student in context.Students
+                               where student.GradeID == gradeID
+                               select student;
+                return students.Count();
+            }
+        }
+        public static int GetStudentCountByGradeName(string gradeName)
+        {
+            gradeName = gradeName.Replace(" ", string.Empty).ToUpper();
+            using (SchoolJournalEntities context = new SchoolJournalEntities())
+            {
+                var students = from student in context.Students
+                               where student.GradeID == (from grade in context.Grades
+                                                         where (grade.GradeNo+grade.Section).Equals(gradeName)
+                                                         select grade.GradeID).FirstOrDefault()
+                               select student;
+                return students.Count();
+            }
+        }
     }
 }
